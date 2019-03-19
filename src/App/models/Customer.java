@@ -5,17 +5,26 @@ import App.helpers.database.annotations.DBCol;
 public class Customer {
 
     @DBCol
-    long id;
+    private long id;
 
     @DBCol
-    String firstname;
+    private String firstname;
 
     @DBCol
-    String lastname;
+    private String lastname;
 
     @DBCol("SSN")
-    String ssn;
+    private String ssn;
 
+
+
+    public String getName(){
+        return firstname.concat(" " + lastname);
+    }
+
+    public long getId() {
+        return id;
+    }
 
     @Override
     public String toString() {

@@ -29,7 +29,7 @@ public class LoginController {
     }
 
     @FXML
-    private void loginButtonPressed(){
+    private void loginButtonPressed() throws Exception{
         String SSN = fieldSSN.getText();
         String password = fieldPassword.getText();
         fieldSSN.clear();
@@ -37,9 +37,8 @@ public class LoginController {
         fieldSSN.requestFocus();
         BankMain.customer = LoginHelper.getUserFromDatabase(SSN, password);
         if(BankMain.customer != null){
-            try{
-                switchSceneToHome();
-            }catch (Exception e){}
+            BankMain.bankTitle = BankMain.bankTitle.concat("Inloggad som: " + BankMain.customer.getName().concat(" - "));
+            switchSceneToHome();
         } else {
             errorLabel.setText("Inloggningen misslyckades. Vänligen kontrollera dina uppgifter och försök igen. ");
         }

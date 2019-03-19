@@ -21,16 +21,21 @@ public class SQLHelper {
     }
 
     public boolean createQuery(String queryKey, String query){
-        return this.queryMaster.addQuery(queryKey, query);
+        return this.queryMaster.addQuery(queryKey, query, null, null);
     }
 
     public boolean createQuery(String queryKey, String query, SQLTypes[] dataTypes){
-        return this.queryMaster.addQuery(queryKey, query, dataTypes);
+        return this.queryMaster.addQuery(queryKey, query, dataTypes, null);
+    }
+
+    public boolean createQuery(String queryKey, String query, Class<?> someClass){
+        return this.queryMaster.addQuery(queryKey, query, null, someClass);
     }
 
     public boolean createQuery(String queryKey, String query, SQLTypes[] dataTypes, Class<?> someClass){
         return this.queryMaster.addQuery(queryKey, query, dataTypes, someClass);
     }
+
 
     public List<?> getListFromQuery(String queryKey){
         //todo this needs to be able to take a list of filters

@@ -25,15 +25,6 @@ class QueryMaster {
         return confirmation;
     }
 
-
-    boolean addQuery(String key, String query){
-        return this.addQuery(key, query, null, null);
-    }
-
-    boolean addQuery(String key, String query, SQLTypes[] dataTypes){
-        return addQuery(key, query, dataTypes, null);
-    }
-
     boolean updateQueryWriteData(String queryKey, List<?> dataToWrite){
         boolean isSuccessful = false;
         try{
