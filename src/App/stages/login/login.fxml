@@ -1,17 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.stages.login.LoginController">
    <children>
-      <Button fx:id="buttonLogin" onAction="#loginButtonPressed" layoutX="370.0" layoutY="287.0" mnemonicParsing="false" text="Logga in" />
-      <TextField fx:id="fieldSSN" layoutX="327.0" layoutY="166.0" />
-      <TextField fx:id="fieldPassword" layoutX="326.0" layoutY="231.0" />
-      <Text layoutX="361.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Personnummer" />
-      <Text layoutX="375.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lösenord" />
-      <Text layoutX="192.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="För att logga in i Swedenbank måste du ange ditt personnummer och lösenord" />
+      <Button fx:id="buttonLogin" layoutX="368.0" layoutY="356.0" mnemonicParsing="false" onAction="#loginButtonPressed" text="Logga in" />
+      <TextField fx:id="fieldSSN" onKeyReleased="#checkLoginKey" layoutX="325.0" layoutY="235.0" />
+      <PasswordField fx:id="fieldPassword" onKeyReleased="#checkLoginKey" layoutX="324.0" layoutY="300.0" />
+      <Text layoutX="359.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Personnummer" />
+      <Text layoutX="373.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lösenord" />
+      <Label fx:id="errorLabel" layoutX="187.0" layoutY="408.0" text="" textFill="RED" />
+      <Label layoutX="111.0" layoutY="37.0" text="Välkommen till Schwedenbank">
+         <font>
+            <Font name="Agency FB" size="64.0" />
+         </font>
+      </Label>
+      <Label layoutX="328.0" layoutY="128.0" text="Bank für alle">
+         <font>
+            <Font name="Agency FB" size="36.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -9,7 +9,6 @@ public final class LoginHelper {
     private LoginHelper(){}
 
     static Customer getUserFromDatabase(String SSN, String password){
-        System.out.println("getting user");
         Customer customer = null;
         ArrayList data = new ArrayList();
         data.add(SSN);

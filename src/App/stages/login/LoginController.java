@@ -7,7 +7,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 
 public class LoginController {
 
@@ -15,7 +18,10 @@ public class LoginController {
     TextField fieldSSN;
 
     @FXML
-    TextField fieldPassword;
+    PasswordField fieldPassword;
+
+    @FXML
+    Label errorLabel;
 
     @FXML
     private void initialize(){
@@ -26,17 +32,26 @@ public class LoginController {
     private void loginButtonPressed(){
         String SSN = fieldSSN.getText();
         String password = fieldPassword.getText();
+        fieldSSN.clear();
+        fieldPassword.clear();
+        fieldSSN.requestFocus();
         BankMain.customer = LoginHelper.getUserFromDatabase(SSN, password);
         if(BankMain.customer != null){
             try{
-                switchSceneToLoggedIn();
+                switchSceneToHome();
             }catch (Exception e){}
         } else {
-
+            errorLabel.setText("Inloggningen misslyckades. Vänligen kontrollera dina uppgifter och försök igen. ");
         }
     }
 
-    private void switchSceneToLoggedIn() throws Exception{
+    @FXML
+    private void checkLoginKey(KeyEvent e) throws Exception{
+        if(e.getCode().toString().equals("ENTER"))
+            loginButtonPressed();
+    }
+
+    private void switchSceneToHome() throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/App/stages/home/home.fxml"));
         Parent fxmlInstance = loader.load();
         Scene scene = new Scene(fxmlInstance, 800,600);
