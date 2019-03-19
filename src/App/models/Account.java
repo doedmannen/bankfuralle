@@ -1,8 +1,6 @@
 package App.models;
 
-import App.BankMain;
-import javafx.stage.Stage;
+import App.helpers.database.annotations.DBCol;
 
 public class Account {
-    Stage stage = BankMain.stage;
 }
