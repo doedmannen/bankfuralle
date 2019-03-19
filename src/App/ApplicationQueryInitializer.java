@@ -8,7 +8,11 @@ public final class ApplicationQueryInitializer {
     private ApplicationQueryInitializer(){}
 
     static void runStart(SQLHelper sqlHelper){
+        // Login user
         sqlHelper.createQuery("loginQuery","SELECT * FROM costumers WHERE SSN = ? AND password = ?",
                 new SQLTypes[]{SQLTypes.STRING, SQLTypes.STRING}, Customer.class);
+
+
+
     }
 }

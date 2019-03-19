@@ -1,6 +1,7 @@
 package App;
 
 import App.helpers.database.SQLHelper;
+import App.models.Customer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,6 +12,8 @@ public class BankMain extends Application {
 
     public static Stage stage;
     public static SQLHelper sqlHelper;
+    public static Customer customer;
+    public static String bankTitle;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -19,9 +22,10 @@ public class BankMain extends Application {
         ApplicationQueryInitializer.runStart(sqlHelper);
 
         // Set the stage
+        bankTitle = "Schwedenbank - ";
         stage = primaryStage;
         Parent root = FXMLLoader.load(getClass().getResource("/App/stages/login/login.fxml"));
-        primaryStage.setTitle("Schwedenbank - Ein Bank für alle");
+        primaryStage.setTitle(bankTitle + "logga in");
         primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.show();
     }
