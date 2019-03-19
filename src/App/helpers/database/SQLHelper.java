@@ -40,9 +40,16 @@ public class SQLHelper {
         return (List<?>) valueMapper.map(rs);
     }
 
-    public boolean runQueryWithData(String queryKey, List<?> dataToWrite){
+    public List<?> getListFromQuery(String queryKey, List<?> data){
+        if(queryMaster.updateQueryWriteData(queryKey, data)){
+            return getListFromQuery(queryKey);
+        }
+        return null;
+    }
+
+    public boolean runQueryWithData(String queryKey, List<?> data){
         boolean isSuccessful = false;
-        if(queryMaster.updateQueryWriteData(queryKey, dataToWrite)){
+        if(queryMaster.updateQueryWriteData(queryKey, data)){
             queryMaster.runQuery(queryKey);
             isSuccessful = true;
         }

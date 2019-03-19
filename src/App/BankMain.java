@@ -7,8 +7,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.util.HashMap;
-
 public class BankMain extends Application {
 
     public static Stage stage;
