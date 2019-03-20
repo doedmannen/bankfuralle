@@ -10,11 +10,8 @@ public final class LoginHelper {
 
     static Customer getUserFromDatabase(String SSN, String password){
         Customer customer = null;
-        ArrayList data = new ArrayList();
-        data.add(SSN);
-        data.add(password);
         try{
-            customer = (Customer) BankMain.sqlHelper.getListFromQuery("loginQuery", data).get(0);
+            customer = (Customer) BankMain.sqlHelper.getObjectFromQuery("loginQuery", SSN, password);
         }catch (Exception e){}
         return customer;
     }
