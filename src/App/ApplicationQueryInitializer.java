@@ -17,6 +17,12 @@ public final class ApplicationQueryInitializer {
         sqlHelper.createQuery("myAccountsQuery","SELECT * FROM accounts WHERE owner_id = ?",
                 new SQLTypes[]{SQLTypes.LONG}, Account.class);
 
+        // Get latest transactions for logged in customer
+        sqlHelper.createQuery("myLatestTransactions","SELECT * FROM transactions DESC LIMIT 10",
+                new SQLTypes[]{SQLTypes.LONG}, Account.class);
+
+
+
 
 
     }
