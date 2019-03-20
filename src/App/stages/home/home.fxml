@@ -24,6 +24,6 @@
       <ListView fx:id="accountList" layoutX="114.0" layoutY="150.0" prefHeight="109.0" prefWidth="502.0" />
       <Label layoutX="114.0" layoutY="132.0" text="Mina konton" />
       <Label layoutX="115.0" layoutY="292.0" text="Mina senaste 10 transaktioner" />
-      <ListView layoutX="114.0" layoutY="310.0" prefHeight="143.0" prefWidth="502.0" />
+      <ListView fx:id="transactionList" layoutX="114.0" layoutY="310.0" prefHeight="143.0" prefWidth="502.0" />
    </children>
 </AnchorPane>
