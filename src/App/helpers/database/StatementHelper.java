@@ -5,16 +5,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 class StatementHelper {
+    /*
+    * Look into adding support for callable statement
+    * Change PreparedStatement to Statement and cast depending on QueryCommand.
+    * */
     Class<?> mappingClass;
     PreparedStatement preparedStatement;
-    QueryCommand CRUD;
+    QueryCommand cmd;
     SQLTypes[] dataTypes;
 
     StatementHelper(String query, Connector connector, SQLTypes[] dataTypes, Class<?> mappingClass){
         try{
             this.preparedStatement = connector.getConnection().prepareStatement(query);
             this.mappingClass = mappingClass;
-            this.CRUD = query.toLowerCase().startsWith("select") ? QueryCommand.READ : QueryCommand.UPDATE;
+            this.cmd = query.toLowerCase().startsWith("select") ? QueryCommand.READ : QueryCommand.UPDATE;
             this.dataTypes = dataTypes;
         } catch (Exception e){e.printStackTrace();}
     }
@@ -45,7 +49,7 @@ class StatementHelper {
     ResultSet runQuery(){
         ResultSet rs = null;
         try{
-            if(this.CRUD == QueryCommand.READ)
+            if(this.cmd == QueryCommand.READ)
                 rs = preparedStatement.executeQuery();
             else
                 preparedStatement.executeUpdate();

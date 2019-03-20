@@ -4,6 +4,7 @@ import App.helpers.database.SQLHelper;
 import App.helpers.database.enums.SQLTypes;
 import App.models.Account;
 import App.models.Customer;
+import App.models.Transaction;
 
 public final class ApplicationQueryInitializer {
     private ApplicationQueryInitializer(){}
@@ -17,9 +18,10 @@ public final class ApplicationQueryInitializer {
         sqlHelper.createQuery("myAccountsQuery","SELECT * FROM accounts WHERE owner_id = ?",
                 new SQLTypes[]{SQLTypes.LONG}, Account.class);
 
-        // Get latest transactions for logged in customer
-        sqlHelper.createQuery("myLatestTransactions","SELECT * FROM transactions DESC LIMIT 10",
-                new SQLTypes[]{SQLTypes.LONG}, Account.class);
+        // Get latest 10 transactions for logged in customer
+        sqlHelper.createQuery("myLatestTransactionsQuery","SELECT * FROM total_transactions " +
+                        "WHERE account_owner_id = ? ORDER BY time_of_transaction",
+                new SQLTypes[]{SQLTypes.LONG}, Transaction.class);
 
 
 
