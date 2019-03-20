@@ -1,6 +1,7 @@
 package App.stages.login;
 
 import App.BankMain;
+import App.stages.StageHandler;
 import com.sun.tools.javac.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 
 public class LoginController {
 
@@ -38,7 +40,7 @@ public class LoginController {
         BankMain.customer = LoginHelper.getUserFromDatabase(SSN, password);
         if(BankMain.customer != null){
             BankMain.bankTitle = BankMain.bankTitle.concat("Inloggad som: " + BankMain.customer.getName().concat(" - "));
-            switchSceneToHome();
+            StageHandler.switchSceneTo(this,"/home/home.fxml");
         } else {
             errorLabel.setText("Inloggningen misslyckades. Vänligen kontrollera dina uppgifter och försök igen. ");
         }
@@ -50,11 +52,6 @@ public class LoginController {
             loginButtonPressed();
     }
 
-    private void switchSceneToHome() throws Exception{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/App/stages/home/home.fxml"));
-        Parent fxmlInstance = loader.load();
-        Scene scene = new Scene(fxmlInstance, 800,600);
-        BankMain.stage.setScene(scene);
-    }
+
 
 }
