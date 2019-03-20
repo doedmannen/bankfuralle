@@ -25,12 +25,12 @@ class QueryMaster {
         return confirmation;
     }
 
-    boolean updateQueryWriteData(String queryKey, List<?> dataToWrite){
+    boolean updateQueryWriteData(String queryKey, Object[] data){
         boolean isSuccessful = false;
         try{
             StatementHelper statementHelper = preparedStatements.get(queryKey);
             for(int i = 0; i < statementHelper.dataTypes.length; ++i){
-                statementHelper.setSomething(i, dataToWrite.get(i));
+                statementHelper.setSomething(i, data[i]);
             }
             isSuccessful = true;
         }catch (Exception e){}

@@ -47,7 +47,7 @@ public class ObjectRelationMapper<T> {
         return dto;
     }
 
-    public List<T> map(List<Map<String, Object>> rows) {
+    public List<?> map(List<Map<String, Object>> rows) {
         List<T> list = new LinkedList<>();
 
         for (Map<String, Object> row : rows) {
@@ -57,7 +57,7 @@ public class ObjectRelationMapper<T> {
         return list;
     }
 
-    public List<T> map(ResultSet rs) {
+    public List<?> map(ResultSet rs) {
         return this.map(this.resultSetToArrayList(rs));
     }
 

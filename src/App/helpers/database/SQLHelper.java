@@ -45,14 +45,21 @@ public class SQLHelper {
         return (List<?>) valueMapper.map(rs);
     }
 
-    public List<?> getListFromQuery(String queryKey, List<?> data){
+    public List<?> getListFromQuery(String queryKey, Object ...data){
         if(queryMaster.updateQueryWriteData(queryKey, data)){
             return getListFromQuery(queryKey);
         }
         return null;
     }
 
-    public boolean runQueryWithData(String queryKey, List<?> data){
+    public Object getObjectFromQuery(String queryKey, Object ...data){
+        if(queryMaster.updateQueryWriteData(queryKey, data)){
+            return getListFromQuery(queryKey).get(0);
+        }
+        return null;
+    }
+
+    public boolean runQueryWithData(String queryKey, Object ...data){
         boolean isSuccessful = false;
         if(queryMaster.updateQueryWriteData(queryKey, data)){
             queryMaster.runQuery(queryKey);
