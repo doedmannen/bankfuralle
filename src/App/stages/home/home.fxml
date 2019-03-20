@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -20,5 +21,9 @@
             <Font name="Agency FB" size="48.0" />
          </font>
       </Label>
+      <ListView fx:id="accountList" layoutX="114.0" layoutY="150.0" prefHeight="109.0" prefWidth="502.0" />
+      <Label layoutX="114.0" layoutY="132.0" text="Mina konton" />
+      <Label layoutX="115.0" layoutY="292.0" text="Mina senaste 10 transaktioner" />
+      <ListView layoutX="114.0" layoutY="310.0" prefHeight="143.0" prefWidth="502.0" />
    </children>
 </AnchorPane>

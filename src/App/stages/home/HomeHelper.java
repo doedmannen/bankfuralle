@@ -8,11 +8,8 @@ import java.util.List;
 public final class HomeHelper {
     private HomeHelper(){}
 
-    static List accountList;
 
-    static void getAccounts(){
-        ArrayList data = new ArrayList();
-        data.add(BankMain.customer.getId());
-        accountList = BankMain.sqlHelper.getListFromQuery("myAccountsQuery", data);
+    static List getAccounts(){
+        return BankMain.sqlHelper.getListFromQuery("myAccountsQuery", BankMain.customer.getId());
     }
 }

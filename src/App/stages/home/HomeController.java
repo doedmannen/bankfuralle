@@ -1,11 +1,12 @@
 package App.stages.home;
 
-import App.ApplicationQueryInitializer;
 import App.BankMain;
+import App.models.Account;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-
-import java.util.ArrayList;
+import javafx.scene.control.ListView;
 import java.util.List;
 
 public class HomeController {
@@ -14,11 +15,17 @@ public class HomeController {
     Label helloWorld;
 
     @FXML
+    ListView accountList;
+
+    @FXML
     private void initialize(){
         BankMain.stage.setTitle(BankMain.bankTitle + "Mitt konto");
-        System.out.println(BankMain.customer.toString());
-        HomeHelper.getAccounts();
-        HomeHelper.accountList.forEach(System.out::println);
+        setAccountList();
+    }
+
+    private void setAccountList(){
+        ObservableList<Account> accounts = FXCollections.observableArrayList((List<Account>) HomeHelper.getAccounts());
+        accountList.setItems(accounts);
     }
 
 
