@@ -1,18 +1,14 @@
 package App.stages.login;
 
 import App.BankMain;
+import App.helpers.generators.BankGenerator;
+import App.models.Respons;
 import App.stages.StageHandler;
-import com.sun.tools.javac.Main;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.Stage;
 
 public class LoginController {
 
@@ -40,7 +36,7 @@ public class LoginController {
         BankMain.customer = LoginHelper.getUserFromDatabase(SSN, password);
         if(BankMain.customer != null){
             BankMain.bankTitle = BankMain.bankTitle.concat("Inloggad som: " + BankMain.customer.getName().concat(" - "));
-            StageHandler.switchSceneTo(this,"/home/home.fxml");
+            StageHandler.switchSceneTo(this, "createaccount");
         } else {
             errorLabel.setText("Inloggningen misslyckades. Vänligen kontrollera dina uppgifter och försök igen. ");
         }

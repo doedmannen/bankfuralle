@@ -36,7 +36,6 @@ public class SQLHelper {
         return this.queryMaster.addQuery(queryKey, query, dataTypes, someClass);
     }
 
-
     public List<?> getListFromQuery(String queryKey){
         //todo this needs to be able to take a list of filters
         ResultSet rs = queryMaster.runQuery(queryKey);

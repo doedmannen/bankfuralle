@@ -4,6 +4,10 @@ import App.helpers.database.annotations.DBCol;
 import javafx.fxml.FXML;
 
 public class Account {
+
+    @DBCol
+    private long id;
+
     @DBCol
     private String name;
 
@@ -14,7 +18,7 @@ public class Account {
     private double balance;
 
     @DBCol
-    String type;
+    private String type;
 
     public String getName() {
         return name;
@@ -44,9 +48,10 @@ public class Account {
         return accountType;
     }
 
+
     @Override
     public String toString() {
         return String.format("%12s %15s %14s %10.2f SEK", getType(),name,number,balance);
-//        return getType() + "("+name+")" + number.concat(" - BALANS: " + balance);
+//        return "Account";
     }
 }

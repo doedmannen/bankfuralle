@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 
 public class Transaction {
 
-    @DBCol
+    @DBCol("number")
     String account_number;
 
     @DBCol

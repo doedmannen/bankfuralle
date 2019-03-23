@@ -8,7 +8,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="App.stages.createtransaction.Createtransaction"
+            fx:controller="App.stages.createtransaction.CreateTransactionController"
             prefHeight="400.0" prefWidth="600.0">
 
 </AnchorPane>

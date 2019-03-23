@@ -4,7 +4,6 @@ import App.helpers.database.enums.SQLTypes;
 
 import java.sql.ResultSet;
 import java.util.HashMap;
-import java.util.List;
 
 class QueryMaster {
     Connector connector;

@@ -10,10 +10,10 @@ public final class HomeHelper {
 
 
     static List getAccounts(){
-        return BankMain.sqlHelper.getListFromQuery("myAccountsQuery", BankMain.customer.getId());
+        return BankMain.sqlHelper.getListFromQuery("allMyAccountsQuery", BankMain.customer.getId());
     }
 
     static List getLatestTransactions(){
-        return BankMain.sqlHelper.getListFromQuery("myLatestTransactionsQuery", BankMain.customer.getId());
+        return BankMain.sqlHelper.getListFromQuery("allMyLatestTransactionsQuery", BankMain.customer.getId());
     }
 }
