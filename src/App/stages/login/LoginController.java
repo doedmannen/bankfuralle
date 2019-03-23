@@ -2,8 +2,11 @@ package App.stages.login;
 
 import App.BankMain;
 import App.helpers.generators.BankGenerator;
+import App.helpers.string.Replacer;
 import App.models.Respons;
 import App.stages.StageHandler;
+import javafx.application.Platform;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -23,11 +26,17 @@ public class LoginController {
 
     @FXML
     private void initialize(){
-
+        fieldSSN.textProperty().addListener((observable, oldValue, newValue) ->
+            ((StringProperty)observable).setValue(Replacer.numberTrimmer(newValue,10)));
+        
+        Platform.runLater(()->{
+            fieldSSN.requestFocus();
+        });
     }
 
     @FXML
-    private void loginButtonPressed() throws Exception{
+    private void loginButtonPressed(){
+        errorLabel.setText("");
         String SSN = fieldSSN.getText();
         String password = fieldPassword.getText();
         fieldSSN.clear();

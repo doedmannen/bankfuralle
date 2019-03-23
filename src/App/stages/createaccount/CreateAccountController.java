@@ -1,6 +1,9 @@
 package App.stages.createaccount;
 
 import App.helpers.generators.BankGenerator;
+import App.helpers.string.Replacer;
+import App.stages.StageHandler;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -25,7 +28,26 @@ public class CreateAccountController {
     @FXML
     private void initialize(){
         createTextForComboBox();
+        createAccountButton.setOnAction(e -> createAccount());
+        abortCreateAccount.setOnAction(e -> abort());
+        accountName.textProperty().addListener((observable, oldValue, newValue) ->
+            ((StringProperty)observable).setValue(Replacer.superTrimFixed(newValue, 10)));
     }
+
+    @FXML
+    private void createAccount(){
+        String name = accountName.getText().equals("") ? accountType.getValue().toString() : accountName.getText();
+        String type = accountType.getValue().toString();
+        System.out.println(name);
+        System.out.println(type);
+        CreateAccountHelper.createNewaccount(name, type);
+    }
+
+    @FXML
+    private void abort(){
+        StageHandler.switchSceneTo(this, "home");
+    }
+
 
     private void createTextForComboBox(){
         ObservableList<String> options = FXCollections.observableArrayList(
@@ -34,5 +56,6 @@ public class CreateAccountController {
                 "Lönekonto"
         );
         accountType.setItems(options);
+        accountType.setValue("Sparkonto");
     }
 }
