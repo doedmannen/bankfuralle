@@ -28,7 +28,7 @@ public class LoginController {
     private void initialize(){
         fieldSSN.textProperty().addListener((observable, oldValue, newValue) ->
             ((StringProperty)observable).setValue(Replacer.numberTrimmer(newValue,10)));
-        
+
         Platform.runLater(()->{
             fieldSSN.requestFocus();
         });
@@ -52,7 +52,7 @@ public class LoginController {
     }
 
     @FXML
-    private void checkLoginKey(KeyEvent e) throws Exception{
+    private void checkLoginKey(KeyEvent e){
         if(e.getCode().toString().equals("ENTER"))
             loginButtonPressed();
     }

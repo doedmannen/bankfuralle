@@ -1,8 +1,12 @@
 package App.stages.createaccount;
 
-public class CreateAccountHelper {
-    static void createNewaccount(Object ... data){
+import App.BankMain;
+import App.helpers.generators.BankGenerator;
 
+public class CreateAccountHelper {
+    static void createNewAccount(String name, String type){
+        BankMain.sqlHelper.runQueryWithData("openNewAccount",
+                BankMain.customer.getId(), BankGenerator.generateAccountNumber(), parseAccountType(type), name);
     }
 
     static String parseAccountType(String type){
@@ -15,7 +19,7 @@ public class CreateAccountHelper {
                 returnValue = "SAVING";
                 break;
             default:
-                returnValue = "Lönekonto";
+                returnValue = "SALARY";
                 break;
         }
         return returnValue;

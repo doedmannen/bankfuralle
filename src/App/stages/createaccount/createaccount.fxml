@@ -28,9 +28,11 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="accountName" layoutX="327.0" layoutY="191.0" prefHeight="26.0" prefWidth="150.0" promptText="Önskat kontonamn" />
-      <ComboBox fx:id="accountType" layoutX="327.0" layoutY="247.0" prefWidth="150.0" />
-      <Button fx:id="createAccountButton" layoutX="429.0" layoutY="300.0" mnemonicParsing="false" text="Skapa" />
-      <Button fx:id="abortCreateAccount" layoutX="327.0" layoutY="300.0" mnemonicParsing="false" text="Avbryt" />
+      <TextField fx:id="accountName" layoutX="326.0" layoutY="229.0" prefHeight="26.0" prefWidth="150.0" promptText="Önskat kontonamn" />
+      <ComboBox fx:id="accountType" layoutX="326.0" layoutY="285.0" prefWidth="150.0" promptText="Kontotyp" />
+      <Button fx:id="createAccountButton" layoutX="428.0" layoutY="327.0" mnemonicParsing="false" text="Skapa" />
+      <Button fx:id="abortCreateAccount" layoutX="326.0" layoutY="327.0" mnemonicParsing="false" text="Avbryt" />
+      <Label layoutX="326.0" layoutY="211.0" text="Kontonamn" />
+      <Label layoutX="326.0" layoutY="268.0" text="Kontotyp" />
    </children>
 </AnchorPane>

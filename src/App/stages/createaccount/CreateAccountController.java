@@ -38,9 +38,7 @@ public class CreateAccountController {
     private void createAccount(){
         String name = accountName.getText().equals("") ? accountType.getValue().toString() : accountName.getText();
         String type = accountType.getValue().toString();
-        System.out.println(name);
-        System.out.println(type);
-        CreateAccountHelper.createNewaccount(name, type);
+        CreateAccountHelper.createNewAccount(name, type);
     }
 
     @FXML

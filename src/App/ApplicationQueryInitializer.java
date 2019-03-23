@@ -30,7 +30,7 @@ public final class ApplicationQueryInitializer {
 
         // Create new account
         sqlHelper.createQuery("openNewAccount", "INSERT INTO accounts SET `owner_id` = ?, `number` = ?, `type` = ?, `name` = ?",
-                new SQLTypes[]{SQLTypes.LONG, SQLTypes.STRING, SQLTypes.STRING, SQLTypes.STRING, SQLTypes.STRING});
+                new SQLTypes[]{SQLTypes.LONG, SQLTypes.STRING, SQLTypes.STRING, SQLTypes.STRING});
 
 
 
