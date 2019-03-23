@@ -45,7 +45,7 @@ public class LoginController {
         BankMain.customer = LoginHelper.getUserFromDatabase(SSN, password);
         if(BankMain.customer != null){
             BankMain.bankTitle = BankMain.bankTitle.concat("Inloggad som: " + BankMain.customer.getName().concat(" - "));
-            StageHandler.switchSceneTo(this, "createaccount");
+            StageHandler.switchSceneTo(this, "createtransaction");
         } else {
             errorLabel.setText("Inloggningen misslyckades. Vänligen kontrollera dina uppgifter och försök igen. ");
         }
