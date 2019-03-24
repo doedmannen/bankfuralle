@@ -13,6 +13,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 
+import java.util.Calendar;
+
 public class LoginController {
 
     @FXML
@@ -28,9 +30,14 @@ public class LoginController {
     private void initialize(){
         fieldSSN.textProperty().addListener((observable, oldValue, newValue) ->
             ((StringProperty)observable).setValue(Replacer.numberTrimmer(newValue,10)));
+        checkCostumerRegion();
+    }
 
-        Platform.runLater(()->{
+    private void checkCostumerRegion(){
+        Platform.runLater(() -> {
             fieldSSN.requestFocus();
+            if(!Calendar.getInstance().getTimeZone().getID().equals("Europe/Berlin"))
+                StageHandler.switchSceneTo(this, "illegalregion");
         });
     }
 
