@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.stages.createtransaction.CreateTransactionController">
    <children>
@@ -24,22 +24,23 @@
             <Font name="Agency FB" size="48.0" />
          </font>
       </Label>
-      <ComboBox layoutX="36.0" layoutY="194.0" prefHeight="26.0" prefWidth="305.0" />
+      <ComboBox fx:id="fromAccountCombo" layoutX="36.0" layoutY="194.0" prefHeight="26.0" prefWidth="305.0" />
       <Label layoutX="342.0" layoutY="130.0" text="Ny transaktion">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="35.0" layoutY="176.0" text="Från konto" />
+      <Label layoutX="36.0" layoutY="176.0" text="Från konto" />
       <Label layoutX="458.0" layoutY="176.0" text="Till konto" />
-      <Label layoutX="458.0" layoutY="254.0" text="Externt konto" />
-      <TextField layoutX="458.0" layoutY="272.0" prefHeight="26.0" prefWidth="306.0" />
-      <ComboBox layoutX="458.0" layoutY="194.0" prefHeight="26.0" prefWidth="305.0" />
-      <Button layoutX="290.0" layoutY="424.0" mnemonicParsing="false" text="Avbryt" />
-      <Button layoutX="392.0" layoutY="424.0" mnemonicParsing="false" text="Genomför transaktion" />
-      <TextField layoutX="35.0" layoutY="272.0" prefHeight="26.0" prefWidth="306.0" />
-      <Label layoutX="35.0" layoutY="254.0" text="Meddelande" />
-      <TextField layoutX="35.0" layoutY="348.0" prefHeight="26.0" prefWidth="306.0" />
-      <Label layoutX="35.0" layoutY="330.0" text="Transaktionsdatum (lämna tomt för omedelbar transaktion)" />
+      <Label layoutX="458.0" layoutY="254.0" text="Till externt konto" />
+      <TextField fx:id="externalAccount" layoutX="457.0" layoutY="272.0" prefHeight="26.0" prefWidth="306.0" />
+      <ComboBox fx:id="toAccountCombo" layoutX="458.0" layoutY="194.0" prefHeight="26.0" prefWidth="305.0" />
+      <Button fx:id="abortTransaction" layoutX="290.0" layoutY="424.0" mnemonicParsing="false" text="Avbryt" />
+      <Button fx:id="createTransaction" layoutX="392.0" layoutY="424.0" mnemonicParsing="false" text="Genomför transaktion" />
+      <TextField fx:id="transactionMessage" layoutX="38.0" layoutY="272.0" prefHeight="26.0" prefWidth="306.0" />
+      <Label layoutX="38.0" layoutY="254.0" text="Meddelande" />
+      <TextField fx:id="transactionDate" layoutX="38.0" layoutY="348.0" prefHeight="26.0" prefWidth="306.0" />
+      <Label layoutX="38.0" layoutY="330.0" text="Transaktionsdatum (lämna tomt för omedelbar transaktion)" />
+      <CheckBox fx:id="transactionRepeat" layoutX="458.0" layoutY="352.0" mnemonicParsing="false" text="Repetera transaktionen varje månad" />
    </children>
 </AnchorPane>

@@ -1,5 +1,6 @@
 package App.stages.createaccount;
 
+import App.BankMain;
 import App.helpers.generators.BankGenerator;
 import App.helpers.string.Replacer;
 import App.stages.StageHandler;
@@ -27,6 +28,7 @@ public class CreateAccountController {
 
     @FXML
     private void initialize(){
+        BankMain.stage.setTitle(BankMain.bankTitle + "Öppna nytt konto");
         createTextForComboBox();
         createAccountButton.setOnAction(e -> createAccount());
         abortCreateAccount.setOnAction(e -> abort());
