@@ -35,14 +35,16 @@
       <Label layoutX="458.0" layoutY="254.0" text="Till externt konto" />
       <TextField fx:id="externalAccount" layoutX="457.0" layoutY="272.0" prefHeight="26.0" prefWidth="306.0" />
       <ComboBox fx:id="toAccountCombo" layoutX="458.0" layoutY="194.0" prefHeight="26.0" prefWidth="305.0" />
-      <Button fx:id="abortTransaction" layoutX="290.0" layoutY="476.0" mnemonicParsing="false" text="Avbryt" />
-      <Button fx:id="createTransaction" layoutX="392.0" layoutY="476.0" mnemonicParsing="false" text="Genomför transaktion" />
+      <Button fx:id="abortTransaction" layoutX="290.0" layoutY="526.0" mnemonicParsing="false" text="Avbryt" />
+      <Button fx:id="createTransaction" layoutX="392.0" layoutY="526.0" mnemonicParsing="false" text="Genomför transaktion" />
       <TextField fx:id="transactionMessage" layoutX="38.0" layoutY="272.0" prefHeight="26.0" prefWidth="306.0" />
       <Label layoutX="38.0" layoutY="254.0" text="Meddelande" />
       <TextField fx:id="transactionDate" layoutX="38.0" layoutY="348.0" prefHeight="26.0" prefWidth="306.0" />
       <Label layoutX="38.0" layoutY="330.0" text="Transaktionsdatum (lämna tomt för omedelbar transaktion)" />
-      <CheckBox fx:id="transactionRepeat" layoutX="458.0" layoutY="352.0" mnemonicParsing="false" text="Repetera transaktionen varje månad" />
-      <Label fx:id="errorLabelAccount" layoutX="219.0" layoutY="409.0" text="" textFill="RED" />
-      <Label fx:id="errorLabelDate" layoutX="214.0" layoutY="437.0" text="" textFill="RED" />
+      <CheckBox fx:id="transactionRepeat" layoutX="311.0" layoutY="400.0" mnemonicParsing="false" text="Repetera transaktionen varje månad" />
+      <Label fx:id="errorLabelAccount" layoutX="221.0" layoutY="450.0" textFill="RED" />
+      <Label fx:id="errorLabelDate" layoutX="214.0" layoutY="487.0" textFill="RED" />
+      <Label layoutX="458.0" layoutY="330.0" text="Belopp" />
+      <TextField fx:id="transactionAmount" layoutX="457.0" layoutY="348.0" prefHeight="26.0" prefWidth="306.0" />
    </children>
 </AnchorPane>

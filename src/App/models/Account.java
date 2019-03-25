@@ -51,7 +51,6 @@ public class Account {
 
     @Override
     public String toString() {
-        return String.format("%s %s - %s - %10.2f SEK", getType(),name,number,balance);
-//        return "Account";
+        return String.format("%s %s - %s - %f SEK", getType(),name,number,balance);
     }
 }

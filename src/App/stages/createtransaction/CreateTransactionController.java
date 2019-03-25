@@ -12,10 +12,7 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import javax.swing.text.DateFormatter;
 import java.time.LocalDate;
@@ -54,6 +51,12 @@ public class CreateTransactionController {
     @FXML
     Label errorLabelDate;
 
+    @FXML
+    CheckBox transactionRepeat;
+
+    @FXML
+    TextField transactionAmount;
+
     ObservableList<String> allAcounts;
 
 
@@ -70,9 +73,11 @@ public class CreateTransactionController {
                 ((StringProperty)observable).setValue(Replacer.numberTrimmer(newValue,8)));
         transactionMessage.textProperty().addListener((observable, oldValue, newValue) ->
                 ((StringProperty)observable).setValue(Replacer.superTrimFixed(newValue,10)));
+        transactionAmount.textProperty().addListener((observable, oldValue, newValue) ->
+                ((StringProperty)observable).setValue(Replacer.moneyTrim(newValue,10)));
 
-        abortTransaction.setOnAction(event -> goHome());
-        createTransaction.setOnAction(event -> performTransaction());
+        abortTransaction.setOnAction(e -> goHome());
+        createTransaction.setOnAction(e -> performTransaction());
     }
 
     private void goHome(){
@@ -81,7 +86,15 @@ public class CreateTransactionController {
 
     private void performTransaction(){
         if(validateInputFields()){
-
+            if(transactionRepeat.isSelected()){
+                if(LocalDate.parse(transactionDate.getText(), DateTimeFormatter.BASIC_ISO_DATE).isEqual(LocalDate.now())){
+                    System.out.println("Transaktionen är idag, ska genomföras direkt samt läggas in i databasen som månads");
+                } else {
+                    System.out.println("Ska endast läggas in i databasen som månads");
+                }
+            } else {
+                System.out.println("Detta är en engångstransaktion, ska endast läggas in");
+            }
         }
     }
 
@@ -105,13 +118,13 @@ public class CreateTransactionController {
 
         if(transactionDate.getText().length() > 0){
             try{
-                LocalDate.parse(transactionDate.getText(), DateTimeFormatter.BASIC_ISO_DATE);
+                if(LocalDate.parse(transactionDate.getText(), DateTimeFormatter.BASIC_ISO_DATE).isBefore(LocalDate.now()))
+                    throw new Exception();
             }catch (Exception e){
                 valid = false;
                 Platform.runLater(()->errorLabelDate.setText("Felaktigt formulerat eller ogiltigt datum, måste anges som ex 20190101"));
             }
         }
-
         return valid;
     }
 
@@ -121,14 +134,13 @@ public class CreateTransactionController {
                 .map(account -> account.toString())
                 .collect(Collectors.toCollection(ArrayList::new)));
     }
-
     private void setAccountCombos(){
         // Set the from account combo
         fromAccountCombo.setItems(allAcounts);
-
+        fromAccountCombo.setValue(fromAccountCombo.getItems().get(1));
         ObservableList<String> toAccounts = allAcounts.stream().collect(Collectors.toCollection(FXCollections::observableArrayList));
         toAccounts.add("Överföring till externt konto (fylls i manuellt nedan)");
         toAccountCombo.setItems(toAccounts);
+        toAccountCombo.setValue(toAccountCombo.getItems().get(1));
     }
-
 }
