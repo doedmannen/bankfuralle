@@ -23,4 +23,7 @@ public class Replacer {
         }
         return String.join("", reversed);
     }
+    public static String parseAccountNumber(String fulltext){
+        return fulltext.replaceAll(".*- (\\d{11,14}) -.*","$1");
+    }
 }

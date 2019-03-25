@@ -44,6 +44,10 @@ public final class ApplicationQueryInitializer {
         sqlHelper.createQuery("createMonthlyTransaction", "CALL create_monthly_transaction(?, ?, ?, ?, ?)",
                 new SQLTypes[]{SQLTypes.STRING, SQLTypes.STRING, SQLTypes.DOUBLE, SQLTypes.STRING, SQLTypes.STRING});
 
+        // Create new monthly transaction
+        sqlHelper.createQuery("createAutogiro", "CALL create_autogiro(?, ?)",
+                new SQLTypes[]{SQLTypes.STRING, SQLTypes.STRING});
+
 
 
 

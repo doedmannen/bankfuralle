@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.stages.createautogiro.CreateAutogiroController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="109.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="800.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="109.0" layoutX="114.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="48.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="44.0" layoutY="31.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="800.0" />
+      <Label fx:id="helloWorld" layoutX="474.0" layoutY="31.0" text="Bank für alle">
+         <font>
+            <Font name="Agency FB" size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="114.0" layoutY="26.0" text="Schwedenbank">
+         <font>
+            <Font name="Agency FB" size="48.0" />
+         </font>
+      </Label>
+      <Label layoutX="313.0" layoutY="129.0" text="Anmälan om autogiro">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="165.0" layoutY="175.0" text="Som kund i Schweden bank lämnar jag härmed fullmakt för företag med BG/PG-nummer" />
+      <Label layoutX="230.0" layoutY="257.0" text="att automatiskt skapa transaktioner från mitt nedan valda konto" />
+      <Button fx:id="confirmButton" layoutX="422.0" layoutY="404.0" mnemonicParsing="false" text="Bekräfta" />
+      <Button fx:id="cancelButton" layoutX="311.0" layoutY="404.0" mnemonicParsing="false" text="Avbryt" />
+      <ComboBox fx:id="fromAccount" layoutX="257.0" layoutY="312.0" prefHeight="26.0" prefWidth="285.0" />
+      <TextField fx:id="toAccount" layoutX="324.0" layoutY="208.0" />
+      <Label fx:id="errorLabel" layoutX="244.0" layoutY="367.0" textFill="RED" />
+   </children>
+</AnchorPane>

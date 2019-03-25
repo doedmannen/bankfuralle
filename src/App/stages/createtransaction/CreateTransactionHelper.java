@@ -10,7 +10,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-public class CreateTransactionHelper {
+public final class CreateTransactionHelper {
+    private CreateTransactionHelper(){}
+    
     static List getMyAccounts(){
         return BankMain.sqlHelper.getListFromQuery("allMyAccountsQuery", BankMain.customer.getId());
     }
@@ -31,7 +33,7 @@ public class CreateTransactionHelper {
 
     static boolean incorrectBalance(String accountFulltext, String amount){
         double testAmount = parseAmount(amount);
-        String account = parseAccountNumber(accountFulltext);
+        String account = Replacer.parseAccountNumber(accountFulltext);
         Respons respons = (Respons) BankMain.sqlHelper.getObjectFromQuery("accountHasBalance", account, testAmount);
         return (boolean)respons.getAnswer();
     }
@@ -40,9 +42,6 @@ public class CreateTransactionHelper {
         return Double.parseDouble(Replacer.numberTrimmer(amount,10));
     }
 
-    static String parseAccountNumber(String fulltext){
-        return fulltext.replaceAll(".*- (\\d{11,14}) -.*","$1");
-    }
 
 
 }

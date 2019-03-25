@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.stages.home.HomeController">
    <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9ea389" height="493.0" layoutY="106.0" stroke="BLACK" strokeLineJoin="BEVEL" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="109.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="800.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="109.0" layoutX="114.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="48.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="44.0" layoutY="31.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="800.0" />
@@ -21,9 +24,33 @@
             <Font name="Agency FB" size="48.0" />
          </font>
       </Label>
-      <ListView fx:id="accountList" layoutX="114.0" layoutY="150.0" prefHeight="109.0" prefWidth="502.0" />
-      <Label layoutX="114.0" layoutY="132.0" text="Mina konton" />
-      <Label layoutX="115.0" layoutY="292.0" text="Mina senaste 10 transaktioner" />
-      <ListView fx:id="transactionList" layoutX="114.0" layoutY="310.0" prefHeight="143.0" prefWidth="502.0" />
+      <ListView fx:id="accountList" layoutX="236.0" layoutY="155.0" prefHeight="109.0" prefWidth="502.0" />
+      <Label layoutX="236.0" layoutY="137.0" text="Mina konton" />
+      <Label layoutX="237.0" layoutY="334.0" text="Mina senaste 10 transaktioner (alla konton)" />
+      <ListView fx:id="transactionList" layoutX="236.0" layoutY="352.0" prefHeight="143.0" prefWidth="502.0" />
+      <TextField layoutX="237.0" layoutY="538.0" />
+      <Button fx:id="menuButtonChangeMaxCharge" layoutX="404.0" layoutY="537.0" mnemonicParsing="false" text="Ändra maxbelopp" />
+      <Label layoutX="237.0" layoutY="514.0" text="7 dagars maxbelopp för kortbetalningar" />
+      <Button fx:id="menuEditAccount" layoutX="617.0" layoutY="274.0" mnemonicParsing="false" text="Redigera valt konto" />
+      <Button fx:id="menuCreateAutogiro" layoutX="19.0" layoutY="233.0" minWidth="-Infinity" mnemonicParsing="false" prefWidth="170.0" text="Betala med autogiro" />
+      <Label layoutX="18.0" layoutY="120.0" text="Storslagen bankmeny" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="menuCreatePayment" layoutX="19.0" layoutY="202.0" minWidth="-Infinity" mnemonicParsing="false" prefWidth="170.0" text="Ny betalning" />
+      <Button fx:id="menuCreateTransaction" layoutX="19.0" layoutY="172.0" minWidth="-Infinity" mnemonicParsing="false" prefWidth="170.0" text="Ny transaktion" />
+      <Button fx:id="menuOpenAccount" layoutX="19.0" layoutY="142.0" minWidth="-Infinity" mnemonicParsing="false" prefWidth="170.0" text="Öppna nytt konto" />
+      <Button fx:id="menuDeleteAccount" layoutX="506.0" layoutY="274.0" mnemonicParsing="false" text="Ta bort valt konto" />
+      <Button fx:id="menuViewAccount" layoutX="236.0" layoutY="274.0" mnemonicParsing="false" text="Visa transaktioner för valt konto" />
+      <Button fx:id="simulationBuyHorse" layoutX="19.0" layoutY="410.0" minWidth="-Infinity" mnemonicParsing="false" prefWidth="170.0" text="Köp travhäst med kort" />
+      <Button fx:id="simulationPayday" layoutX="19.0" layoutY="471.0" minWidth="-Infinity" mnemonicParsing="false" prefWidth="170.0" text="Det är den 25e idag" />
+      <Label layoutX="52.0" layoutY="388.0" text="Simuleringar" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="simulationBuyFood" layoutX="19.0" layoutY="440.0" minWidth="-Infinity" mnemonicParsing="false" prefWidth="170.0" text="Köp lunch för 2 med kort" />
+      <Button fx:id="simulationAutogiro" layoutX="19.0" layoutY="503.0" minWidth="-Infinity" mnemonicParsing="false" prefWidth="170.0" text="Dra 299kr på mina autogiro" />
    </children>
 </AnchorPane>
