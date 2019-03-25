@@ -5,6 +5,7 @@ import App.helpers.generators.BankGenerator;
 import App.helpers.string.Replacer;
 import App.models.Account;
 import App.stages.StageHandler;
+import App.stages.confirmation.ConfirmationController;
 import App.stages.createaccount.CreateAccountHelper;
 import App.stages.home.HomeHelper;
 import javafx.application.Platform;
@@ -93,15 +94,20 @@ public class CreateTransactionController {
 
     private void performTransaction(){
         if(validateInputFields()){
-            if(transactionRepeat.isSelected()){
-                if(LocalDate.parse(transactionDate.getText(), DateTimeFormatter.BASIC_ISO_DATE).isEqual(LocalDate.now())){
-                    System.out.println("Transaktionen är idag, ska genomföras direkt samt läggas in i databasen som månads");
-                } else {
-                    System.out.println("Ska endast läggas in i databasen som månads");
-                }
-            } else {
-                System.out.println("Detta är en engångstransaktion, ska endast läggas in");
-            }
+            String fromAccount = CreateTransactionHelper.parseAccountNumber(fromAccountCombo.getValue().toString());
+            String toAccount = toAccountCombo.getValue().toString().equals("Överföring till externt konto (fylls i manuellt nedan)") ?
+                    externalAccount.getText() : CreateTransactionHelper.parseAccountNumber(toAccountCombo.getValue().toString());
+            CreateTransactionHelper.createTransaction(
+                    transactionRepeat.isSelected(),
+                    fromAccount,
+                    toAccount,
+                    transactionAmount.getText(),
+                    transactionDate.getText(),
+                    transactionMessage.getText());
+
+            Platform.runLater(()->{
+                StageHandler.switchSceneTo(this, "confirmation");
+            });
         }
     }
 

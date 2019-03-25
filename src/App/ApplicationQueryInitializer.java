@@ -36,6 +36,14 @@ public final class ApplicationQueryInitializer {
         sqlHelper.createQuery("openNewAccount", "INSERT INTO accounts SET `owner_id` = ?, `number` = ?, `type` = ?, `name` = ?",
                 new SQLTypes[]{SQLTypes.LONG, SQLTypes.STRING, SQLTypes.STRING, SQLTypes.STRING});
 
+        // Create new transaction
+        sqlHelper.createQuery("createTransaction", "CALL create_transaction(?, ?, ?, ?, ?)",
+                new SQLTypes[]{SQLTypes.STRING, SQLTypes.STRING, SQLTypes.DOUBLE, SQLTypes.STRING, SQLTypes.STRING});
+
+        // Create new monthly transaction
+        sqlHelper.createQuery("createMonthlyTransaction", "CALL create_monthly_transaction(?, ?, ?, ?, ?)",
+                new SQLTypes[]{SQLTypes.STRING, SQLTypes.STRING, SQLTypes.DOUBLE, SQLTypes.STRING, SQLTypes.STRING});
+
 
 
 

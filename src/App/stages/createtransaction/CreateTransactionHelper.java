@@ -3,7 +3,11 @@ package App.stages.createtransaction;
 import App.BankMain;
 import App.helpers.string.Replacer;
 import App.models.Respons;
+import App.stages.confirmation.ConfirmationController;
+import javafx.scene.control.CheckBox;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class CreateTransactionHelper {
@@ -11,13 +15,19 @@ public class CreateTransactionHelper {
         return BankMain.sqlHelper.getListFromQuery("allMyAccountsQuery", BankMain.customer.getId());
     }
 
-    static void createTransaction(){
-
+    static void createTransaction(boolean repeat, String fromAccount, String toAccount, String amount, String date, String message){
+        if(repeat){
+            if(LocalDate.parse(date, DateTimeFormatter.BASIC_ISO_DATE).isEqual(LocalDate.now())){
+                BankMain.sqlHelper.runQueryWithData("createTransaction", fromAccount, toAccount, parseAmount(amount), message, date);
+            }
+            BankMain.sqlHelper.runQueryWithData("createMonthlyTransaction", fromAccount, toAccount, parseAmount(amount), message, date);
+            ConfirmationController.setMessage("Transaktionen är inlagd i systemet och kommer att behandlas på utsatt tid samt upprepas varje månad");
+        } else {
+            BankMain.sqlHelper.runQueryWithData("createTransaction", fromAccount, toAccount, parseAmount(amount), message, date);
+            ConfirmationController.setMessage("Transaktionen är inlagd i systemet och kommer att behandlas på utsatt tid");
+        }
     }
 
-    private static void createMonthlyTransaction(){
-
-    }
 
     static boolean incorrectBalance(String accountFulltext, String amount){
         double testAmount = parseAmount(amount);
@@ -30,7 +40,7 @@ public class CreateTransactionHelper {
         return Double.parseDouble(Replacer.numberTrimmer(amount,10));
     }
 
-    private static String parseAccountNumber(String fulltext){
+    static String parseAccountNumber(String fulltext){
         return fulltext.replaceAll(".*- (\\d{11,14}) -.*","$1");
     }
 
