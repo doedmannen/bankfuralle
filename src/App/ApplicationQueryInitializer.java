@@ -28,6 +28,10 @@ public final class ApplicationQueryInitializer {
         sqlHelper.createQuery("accountNumberIsFree", "SELECT account_number_is_free(?) as answer",
                 new SQLTypes[]{SQLTypes.STRING}, Respons.class);
 
+        // Validate if an account has a certain balance
+        sqlHelper.createQuery("accountHasBalance", "SELECT has_balance(?, ?) as answer",
+                new SQLTypes[]{SQLTypes.STRING, SQLTypes.DOUBLE}, Respons.class);
+
         // Create new account
         sqlHelper.createQuery("openNewAccount", "INSERT INTO accounts SET `owner_id` = ?, `number` = ?, `type` = ?, `name` = ?",
                 new SQLTypes[]{SQLTypes.LONG, SQLTypes.STRING, SQLTypes.STRING, SQLTypes.STRING});

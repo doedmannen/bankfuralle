@@ -52,6 +52,9 @@ public class CreateTransactionController {
     Label errorLabelDate;
 
     @FXML
+    Label errorLabelAmount;
+
+    @FXML
     CheckBox transactionRepeat;
 
     @FXML
@@ -64,20 +67,24 @@ public class CreateTransactionController {
     private void initialize(){
         BankMain.stage.setTitle(BankMain.bankTitle + "Ny transaktion");
         setAllAccounts();
-        setAccountCombos();
-        transactionDate.setText(LocalDate.now().format(DateTimeFormatter.BASIC_ISO_DATE));
+        if(allAcounts.size() < 1){
+            Platform.runLater(()-> StageHandler.switchSceneTo(this, "home"));
+        } else {
+            setAccountCombos();
+            transactionDate.setText(LocalDate.now().format(DateTimeFormatter.BASIC_ISO_DATE));
 
-        externalAccount.textProperty().addListener((observable, oldValue, newValue) ->
-                ((StringProperty)observable).setValue(Replacer.numberTrimmer(newValue,14)));
-        transactionDate.textProperty().addListener((observable, oldValue, newValue) ->
-                ((StringProperty)observable).setValue(Replacer.numberTrimmer(newValue,8)));
-        transactionMessage.textProperty().addListener((observable, oldValue, newValue) ->
-                ((StringProperty)observable).setValue(Replacer.superTrimFixed(newValue,10)));
-        transactionAmount.textProperty().addListener((observable, oldValue, newValue) ->
-                ((StringProperty)observable).setValue(Replacer.moneyTrim(newValue,10)));
-
-        abortTransaction.setOnAction(e -> goHome());
-        createTransaction.setOnAction(e -> performTransaction());
+            externalAccount.textProperty().addListener((observable, oldValue, newValue) ->
+                    ((StringProperty) observable).setValue(Replacer.numberTrimmer(newValue, 14)));
+            transactionDate.textProperty().addListener((observable, oldValue, newValue) ->
+                    ((StringProperty) observable).setValue(Replacer.numberTrimmer(newValue, 8)));
+            transactionMessage.textProperty().addListener((observable, oldValue, newValue) ->
+                    ((StringProperty) observable).setValue(Replacer.superTrimFixed(newValue, 10)));
+            transactionAmount.textProperty().addListener((observable, oldValue, newValue) -> {
+                    ((StringProperty) observable).setValue(Replacer.numberTrimmer(newValue, 8));
+            });
+            abortTransaction.setOnAction(e -> goHome());
+            createTransaction.setOnAction(e -> performTransaction());
+        }
     }
 
     private void goHome(){
@@ -102,8 +109,8 @@ public class CreateTransactionController {
         Platform.runLater(()->{
             errorLabelDate.setText("");
             errorLabelAccount.setText("");
+            errorLabelAmount.setText("");
         });
-
     }
 
     private boolean validateInputFields(){
@@ -112,19 +119,26 @@ public class CreateTransactionController {
 
         if(toAccountCombo.getValue().toString().equals("Överföring till externt konto (fylls i manuellt nedan)")
                 && externalAccount.getText().length() < 11){
-            Platform.runLater(()->errorLabelAccount.setText("Externt konto måste vara 11-14 siffor enligt Schwedenbanks standard"));
+            Platform.runLater(()->errorLabelAccount.setText("Externt konto måste vara 11-14 siffor enligt Schwedenbank"));
             valid = false;
         }
-
         if(transactionDate.getText().length() > 0){
             try{
                 if(LocalDate.parse(transactionDate.getText(), DateTimeFormatter.BASIC_ISO_DATE).isBefore(LocalDate.now()))
                     throw new Exception();
             }catch (Exception e){
                 valid = false;
-                Platform.runLater(()->errorLabelDate.setText("Felaktigt formulerat eller ogiltigt datum, måste anges som ex 20190101"));
+                Platform.runLater(()->errorLabelDate.setText("Ogiltigt datum, måste anges som ex 20190101"));
             }
         }
+        if(transactionAmount.getLength() < 1 || transactionAmount.getText().equals("0")){
+            Platform.runLater(()->errorLabelAmount.setText("Ogiltigt belopp"));
+            valid = false;
+        } else if(!CreateTransactionHelper.incorrectBalance(fromAccountCombo.getValue().toString(), transactionAmount.getText())){
+            Platform.runLater(()->errorLabelAmount.setText("Det saknas balans på kontot pengarna ska dras ifrån"));
+            valid = false;
+        }
+
         return valid;
     }
 
@@ -137,10 +151,10 @@ public class CreateTransactionController {
     private void setAccountCombos(){
         // Set the from account combo
         fromAccountCombo.setItems(allAcounts);
-        fromAccountCombo.setValue(fromAccountCombo.getItems().get(1));
+        fromAccountCombo.setValue(fromAccountCombo.getItems().get(0));
         ObservableList<String> toAccounts = allAcounts.stream().collect(Collectors.toCollection(FXCollections::observableArrayList));
         toAccounts.add("Överföring till externt konto (fylls i manuellt nedan)");
         toAccountCombo.setItems(toAccounts);
-        toAccountCombo.setValue(toAccountCombo.getItems().get(1));
+        toAccountCombo.setValue(toAccountCombo.getItems().get(0));
     }
 }

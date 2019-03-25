@@ -11,11 +11,9 @@ public class Replacer {
         return Replacer.superTrimFixed(text.replaceAll("[^\\d]()", "$1"), length);
     }
     public static String moneyTrim(String text, int length){
-        if(text.length() > 0){
-            text = reverse(numberTrimmer(text, length));
-            return reverse(text.replaceAll("(\\d{3})","$1 ")).trim();
-        }
-        return "";
+        text = reverse(numberTrimmer(text, length));
+        return reverse(text.replaceAll("(\\d{3})", "$1 ")).trim();
+
     }
     private static String reverse(String text){
         String[] toReverse = text.split("");

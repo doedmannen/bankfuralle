@@ -24,6 +24,6 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return String.format("%10s : %14s : %10.2f : %10s", getTime(), account_number, amount, message);
+        return String.format("%s : %s : %.2f : %s", getTime(), account_number, amount, message);
     }
 }

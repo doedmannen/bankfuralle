@@ -42,9 +42,10 @@
       <TextField fx:id="transactionDate" layoutX="38.0" layoutY="348.0" prefHeight="26.0" prefWidth="306.0" />
       <Label layoutX="38.0" layoutY="330.0" text="Transaktionsdatum (lämna tomt för omedelbar transaktion)" />
       <CheckBox fx:id="transactionRepeat" layoutX="311.0" layoutY="400.0" mnemonicParsing="false" text="Repetera transaktionen varje månad" />
-      <Label fx:id="errorLabelAccount" layoutX="221.0" layoutY="450.0" textFill="RED" />
-      <Label fx:id="errorLabelDate" layoutX="214.0" layoutY="487.0" textFill="RED" />
+      <Label fx:id="errorLabelAccount" layoutX="458.0" layoutY="298.0" textFill="RED" />
+      <Label fx:id="errorLabelDate" layoutX="38.0" layoutY="374.0" textFill="RED" />
       <Label layoutX="458.0" layoutY="330.0" text="Belopp" />
       <TextField fx:id="transactionAmount" layoutX="457.0" layoutY="348.0" prefHeight="26.0" prefWidth="306.0" />
+      <Label fx:id="errorLabelAmount" layoutX="457.0" layoutY="374.0" textFill="RED" />
    </children>
 </AnchorPane>
