@@ -52,5 +52,6 @@
       </Label>
       <Button fx:id="simulationBuyFood" layoutX="19.0" layoutY="440.0" minWidth="-Infinity" mnemonicParsing="false" prefWidth="170.0" text="Köp lunch för 2 med kort" />
       <Button fx:id="simulationAutogiro" layoutX="19.0" layoutY="503.0" minWidth="-Infinity" mnemonicParsing="false" prefWidth="170.0" text="Dra 299kr på mina autogiro" />
+      <Label fx:id="errorLabelDelete" layoutX="506.0" layoutY="300.0" text="Kontot får inte ha balans vid borttagning " />
    </children>
 </AnchorPane>

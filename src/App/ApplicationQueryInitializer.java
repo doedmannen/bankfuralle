@@ -19,9 +19,18 @@ public final class ApplicationQueryInitializer {
         sqlHelper.createQuery("allMyAccountsQuery","SELECT * FROM balance_accounts WHERE owner_id = ?",
                 new SQLTypes[]{SQLTypes.LONG}, Account.class);
 
-        // Get latest 10 transactions for logged in customer
+        // Get one specific account
+        sqlHelper.createQuery("getAccount","SELECT * FROM balance_accounts WHERE number = ?",
+                new SQLTypes[]{SQLTypes.STRING}, Account.class);
+
+        // Get latest 10 transactions for specific account with offset
+        sqlHelper.createQuery("getAccountTransactions","SELECT * FROM total_transactions " +
+                        "WHERE number = ? AND `status` = 'DONE' ORDER BY time_of_transaction DESC LIMIT 10 OFFSET ?",
+                new SQLTypes[]{SQLTypes.STRING, SQLTypes.INT}, Transaction.class);
+
+        // Get latest 5 transactions for logged in customer
         sqlHelper.createQuery("allMyLatestTransactionsQuery","SELECT * FROM total_transactions " +
-                        "WHERE owner = ? AND `status` = 'DONE' ORDER BY time_of_transaction DESC LIMIT 10",
+                        "WHERE owner = ? AND `status` = 'DONE' ORDER BY time_of_transaction DESC LIMIT 5",
                 new SQLTypes[]{SQLTypes.LONG}, Transaction.class);
 
         // Validate if an account number is free
@@ -47,6 +56,10 @@ public final class ApplicationQueryInitializer {
         // Create new monthly transaction
         sqlHelper.createQuery("createAutogiro", "CALL create_autogiro(?, ?)",
                 new SQLTypes[]{SQLTypes.STRING, SQLTypes.STRING});
+
+        // Create new monthly transaction
+        sqlHelper.createQuery("accountHasBalance", "SELECT has_balance(?, ?) AS answer",
+                new SQLTypes[]{SQLTypes.STRING, SQLTypes.DOUBLE});
 
 
 

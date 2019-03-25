@@ -94,9 +94,9 @@ public class CreateTransactionController {
 
     private void performTransaction(){
         if(validateInputFields()){
-            String fromAccount = CreateTransactionHelper.parseAccountNumber(fromAccountCombo.getValue().toString());
+            String fromAccount = Replacer.parseAccountNumber(fromAccountCombo.getValue().toString());
             String toAccount = toAccountCombo.getValue().toString().equals("Överföring till externt konto (fylls i manuellt nedan)") ?
-                    externalAccount.getText() : CreateTransactionHelper.parseAccountNumber(toAccountCombo.getValue().toString());
+                    externalAccount.getText() : Replacer.parseAccountNumber(toAccountCombo.getValue().toString());
             CreateTransactionHelper.createTransaction(
                     transactionRepeat.isSelected(),
                     fromAccount,
@@ -155,7 +155,7 @@ public class CreateTransactionController {
                 .collect(Collectors.toCollection(ArrayList::new)));
     }
     private void setAccountCombos(){
-        // Set the from account combo
+        // Set the from editaccount combo
         fromAccountCombo.setItems(allAcounts);
         fromAccountCombo.setValue(fromAccountCombo.getItems().get(0));
         ObservableList<String> toAccounts = allAcounts.stream().collect(Collectors.toCollection(FXCollections::observableArrayList));

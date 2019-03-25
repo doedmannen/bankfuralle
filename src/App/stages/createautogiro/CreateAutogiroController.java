@@ -41,6 +41,9 @@ public class CreateAutogiroController {
         confirmButton.setOnAction(e -> confirmAutogiro());
         cancelButton.setOnAction(e-> Platform.runLater(()-> StageHandler.switchSceneTo(this, "home")));
         setAccountList();
+        toAccount.textProperty().addListener(((observable, oldValue, newValue) -> {
+            Replacer.numberTrimmer(newValue, 8);
+        }));
     }
 
     private void setAccountList(){
@@ -60,7 +63,7 @@ public class CreateAutogiroController {
                 StageHandler.switchSceneTo(this, "confirmation");
             });
         } else {
-            errorLabel.setText("Ogiltig längd på BG/PG-nummer, måste vara minst 2 siffror");
+            errorLabel.setText("Ogiltig längd på BG/PG-nummer, måste vara 2-8 siffror");
         }
     }
 }
