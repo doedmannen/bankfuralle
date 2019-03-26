@@ -26,9 +26,9 @@
       </Label>
       <ListView fx:id="accountList" layoutX="236.0" layoutY="155.0" prefHeight="109.0" prefWidth="502.0" />
       <Label layoutX="236.0" layoutY="137.0" text="Mina konton" />
-      <Label layoutX="237.0" layoutY="334.0" text="Mina senaste 10 transaktioner (alla konton)" />
+      <Label layoutX="237.0" layoutY="334.0" text="Mina senaste 5 transaktioner (alla konton)" />
       <ListView fx:id="transactionList" layoutX="236.0" layoutY="352.0" prefHeight="143.0" prefWidth="502.0" />
-      <TextField layoutX="237.0" layoutY="538.0" />
+      <TextField fx:id="fieldMaxCard" layoutX="237.0" layoutY="538.0" />
       <Button fx:id="menuButtonChangeMaxCharge" layoutX="404.0" layoutY="537.0" mnemonicParsing="false" text="Ändra maxbelopp" />
       <Label layoutX="237.0" layoutY="514.0" text="7 dagars maxbelopp för kortbetalningar" />
       <Button fx:id="menuEditAccount" layoutX="617.0" layoutY="274.0" mnemonicParsing="false" text="Redigera valt konto" />
@@ -52,6 +52,6 @@
       </Label>
       <Button fx:id="simulationBuyFood" layoutX="19.0" layoutY="440.0" minWidth="-Infinity" mnemonicParsing="false" prefWidth="170.0" text="Köp lunch för 2 med kort" />
       <Button fx:id="simulationAutogiro" layoutX="19.0" layoutY="503.0" minWidth="-Infinity" mnemonicParsing="false" prefWidth="170.0" text="Dra 299kr på mina autogiro" />
-      <Label fx:id="errorLabelDelete" layoutX="506.0" layoutY="300.0" text="Kontot får inte ha balans vid borttagning " />
+      <Label fx:id="errorLabelDelete" layoutX="507.0" layoutY="300.0" text="" textFill="RED" />
    </children>
 </AnchorPane>

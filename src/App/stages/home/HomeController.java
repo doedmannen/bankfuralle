@@ -5,15 +5,19 @@ import App.helpers.string.Replacer;
 import App.models.Account;
 import App.models.Transaction;
 import App.stages.StageHandler;
-import App.stages.createaccount.CreateAccountHelper;
+import App.stages.confirmation.ConfirmationController;
 import App.stages.editaccount.EditAccountHelper;
+import App.stages.viewaccount.ViewAccountHelper;
 import javafx.application.Platform;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+
 import java.util.List;
 
 public class HomeController {
@@ -29,6 +33,9 @@ public class HomeController {
 
     @FXML
     Label errorLabelDelete;
+
+    @FXML
+    TextField fieldMaxCard;
 
     // Menu buttons
     @FXML
@@ -64,12 +71,28 @@ public class HomeController {
         setAccountList();
         setTransactionList();
         preSelectAccount();
+        setCardMax();
+        menuOpenAccount.setOnAction(event -> Platform.runLater(()-> StageHandler.switchSceneTo(this, "createaccount")));
         menuCreateAutogiro.setOnAction(event -> Platform.runLater(()-> StageHandler.switchSceneTo(this, "createautogiro")));
         menuCreateTransaction.setOnAction(event -> Platform.runLater(()-> StageHandler.switchSceneTo(this, "createtransaction")));
         menuCreatePayment.setOnAction(event -> Platform.runLater(()-> StageHandler.switchSceneTo(this, "createpayment")));
+        menuButtonChangeMaxCharge.setOnAction(event -> updateCardMax());
         menuDeleteAccount.setOnAction(event -> deleteSelectedAccount());
         menuEditAccount.setOnAction(event -> editSelectedAccount());
         menuViewAccount.setOnAction(event -> viewSelectedAccount());
+        fieldMaxCard.textProperty().addListener((observable, oldValue, newValue) -> {
+            ((StringProperty)observable).setValue(Replacer.numberTrimmer(newValue, 8));
+        });
+    }
+
+    private void updateCardMax(){
+        HomeHelper.updateMax(fieldMaxCard.getText());
+        ConfirmationController.setMessage("Ditt maxbelopp för kortköp är nu ändrat");
+        Platform.runLater(()-> StageHandler.switchSceneTo(this, "confirmation"));
+    }
+
+    private void setCardMax(){
+        fieldMaxCard.setText(String.format("%8.0f",BankMain.customer.getMaxWithdraw()).trim());
     }
 
     private void editSelectedAccount(){
@@ -80,7 +103,7 @@ public class HomeController {
 
     private void viewSelectedAccount(){
         String accountNumber = Replacer.parseAccountNumber(accountList.getSelectionModel().getSelectedItem().toString());
-        EditAccountHelper.setAccountNumber(accountNumber);
+        ViewAccountHelper.setAccountNumber(accountNumber);
         Platform.runLater(()-> StageHandler.switchSceneTo(this, "viewaccount"));
     }
 
@@ -91,7 +114,7 @@ public class HomeController {
         }else if(HomeHelper.isLastAccount()){
             errorLabelDelete.setText("Sista kontot kan ej raderas ");
         } else {
-
+            BankMain.sqlHelper.runQueryWithData("deleteAccount", accountNumber);
         }
     }
 
