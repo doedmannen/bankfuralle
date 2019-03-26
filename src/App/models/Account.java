@@ -36,13 +36,13 @@ public class Account {
         String accountType = "";
         switch (type){
             case "SALARY":
-                accountType = "Lönekonto: ";
+                accountType = "Lönekonto";
                 break;
             case "SAVING":
-                accountType = "Sparkonto: ";
+                accountType = "Sparkonto";
                 break;
             case "CARD":
-                accountType = "Kortkonto: ";
+                accountType = "Kortkonto";
                 break;
         }
         return accountType;
@@ -51,6 +51,6 @@ public class Account {
 
     @Override
     public String toString() {
-        return String.format("%s %s - %s - %.2f SEK", getType(),name,number,balance);
+        return String.format("%s: %s - %s - %.2f SEK", getType(),name,number,balance);
     }
 }
