@@ -64,7 +64,6 @@ public class SQLHelper {
             queryMaster.runQuery(queryKey);
             isSuccessful = true;
         }
-        System.out.println(isSuccessful);
         return isSuccessful;
     }
 

@@ -4,6 +4,7 @@ import App.BankMain;
 import App.helpers.generators.BankGenerator;
 import App.helpers.string.Replacer;
 import App.stages.StageHandler;
+import javafx.application.Platform;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -41,6 +42,7 @@ public class CreateAccountController {
         String name = accountName.getText().equals("") ? accountType.getValue().toString() : accountName.getText();
         String type = accountType.getValue().toString();
         CreateAccountHelper.createNewAccount(name, type);
+        Platform.runLater(()->StageHandler.switchSceneTo(this, "home"));
     }
 
     @FXML

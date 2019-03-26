@@ -33,7 +33,7 @@ public class Account {
     }
 
     public String getType() {
-        String accountType = "";
+        String accountType;
         switch (type){
             case "SALARY":
                 accountType = "Lönekonto";
@@ -41,7 +41,7 @@ public class Account {
             case "SAVING":
                 accountType = "Sparkonto";
                 break;
-            case "CARD":
+            default:
                 accountType = "Kortkonto";
                 break;
         }

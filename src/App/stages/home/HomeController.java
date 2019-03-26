@@ -97,7 +97,7 @@ public class HomeController {
 
     private void editSelectedAccount(){
         String accountNumber = Replacer.parseAccountNumber(accountList.getSelectionModel().getSelectedItem().toString());
-        EditAccountHelper.setAccountNumber(accountNumber);
+        EditAccountHelper.setAccount(accountNumber);
         Platform.runLater(()-> StageHandler.switchSceneTo(this, "editaccount"));
     }
 
@@ -115,6 +115,7 @@ public class HomeController {
             errorLabelDelete.setText("Sista kontot kan ej raderas ");
         } else {
             BankMain.sqlHelper.runQueryWithData("deleteAccount", accountNumber);
+            Platform.runLater(()->StageHandler.switchSceneTo(this, "home"));
         }
     }
 

@@ -73,6 +73,10 @@ public final class ApplicationQueryInitializer {
         sqlHelper.createQuery("deleteAccount", "DELETE FROM `accounts` WHERE number = ?",
                 new SQLTypes[]{SQLTypes.STRING});
 
+        // Edit account
+        sqlHelper.createQuery("editAccount", "UPDATE `accounts` SET `name` = ?, `type` = ? WHERE `number` = ?",
+                new SQLTypes[]{SQLTypes.STRING, SQLTypes.STRING, SQLTypes.STRING});
+
 
     }
 }
