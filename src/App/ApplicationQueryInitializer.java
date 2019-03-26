@@ -15,6 +15,14 @@ public final class ApplicationQueryInitializer {
         sqlHelper.createQuery("loginQuery","SELECT * FROM costumers WHERE SSN = ? AND password = ?",
                 new SQLTypes[]{SQLTypes.STRING, SQLTypes.STRING}, Customer.class);
 
+        // Reload user
+        sqlHelper.createQuery("reloadUser","SELECT * FROM costumers WHERE id = ?",
+                new SQLTypes[]{SQLTypes.LONG}, Customer.class);
+
+        // Update costumers max withdraw
+        sqlHelper.createQuery("updateMaxWithdraw","UPDATE costumers SET max_withdraw = ? WHERE id = ?",
+                new SQLTypes[]{SQLTypes.DOUBLE, SQLTypes.LONG}, Customer.class);
+
         // Get accounts for logged in customer
         sqlHelper.createQuery("allMyAccountsQuery","SELECT * FROM balance_accounts WHERE owner_id = ?",
                 new SQLTypes[]{SQLTypes.LONG}, Account.class);
@@ -59,10 +67,11 @@ public final class ApplicationQueryInitializer {
 
         // Create new monthly transaction
         sqlHelper.createQuery("accountHasBalance", "SELECT has_balance(?, ?) AS answer",
-                new SQLTypes[]{SQLTypes.STRING, SQLTypes.DOUBLE});
+                new SQLTypes[]{SQLTypes.STRING, SQLTypes.DOUBLE}, Respons.class);
 
-
-
+        // Delete account
+        sqlHelper.createQuery("deleteAccount", "DELETE FROM `accounts` WHERE number = ?",
+                new SQLTypes[]{SQLTypes.STRING});
 
 
     }
