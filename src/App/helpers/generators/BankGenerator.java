@@ -15,6 +15,7 @@ public class BankGenerator {
         return rnd;
     }
 
+    // TODO this is never used since we never needed to be able to create cards
     public static String generateCardNumber(){
         String rnd = "6";
         do

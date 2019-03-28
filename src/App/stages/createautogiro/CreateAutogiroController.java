@@ -38,6 +38,7 @@ public class CreateAutogiroController {
 
     @FXML
     private void initialize(){
+        BankMain.stage.setTitle(BankMain.bankTitle + "Betala med autogiro");
         confirmButton.setOnAction(e -> confirmAutogiro());
         cancelButton.setOnAction(e-> Platform.runLater(()-> StageHandler.switchSceneTo(this, "home")));
         setAccountList();

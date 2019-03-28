@@ -7,6 +7,8 @@ import App.models.Customer;
 import App.models.Respons;
 import App.models.Transaction;
 
+import java.lang.annotation.Repeatable;
+
 public final class ApplicationQueryInitializer {
     private ApplicationQueryInitializer(){}
 
@@ -54,20 +56,16 @@ public final class ApplicationQueryInitializer {
                 new SQLTypes[]{SQLTypes.LONG, SQLTypes.STRING, SQLTypes.STRING, SQLTypes.STRING});
 
         // Create new transaction
-        sqlHelper.createQuery("createTransaction", "CALL create_transaction(?, ?, ?, ?, ?)",
-                new SQLTypes[]{SQLTypes.STRING, SQLTypes.STRING, SQLTypes.DOUBLE, SQLTypes.STRING, SQLTypes.STRING});
+        sqlHelper.createQuery("createTransaction", "CALL create_transaction(?, ?, ?, ?, ?, ?)",
+                new SQLTypes[]{SQLTypes.STRING, SQLTypes.STRING, SQLTypes.DOUBLE, SQLTypes.STRING, SQLTypes.STRING, SQLTypes.STRING});
 
         // Create new monthly transaction
-        sqlHelper.createQuery("createMonthlyTransaction", "CALL create_monthly_transaction(?, ?, ?, ?, ?)",
-                new SQLTypes[]{SQLTypes.STRING, SQLTypes.STRING, SQLTypes.DOUBLE, SQLTypes.STRING, SQLTypes.STRING});
+        sqlHelper.createQuery("createMonthlyTransaction", "CALL create_monthly_transaction(?, ?, ?, ?, ?, ?)",
+                new SQLTypes[]{SQLTypes.STRING, SQLTypes.STRING, SQLTypes.DOUBLE, SQLTypes.STRING, SQLTypes.STRING, SQLTypes.STRING});
 
         // Create new monthly transaction
         sqlHelper.createQuery("createAutogiro", "CALL create_autogiro(?, ?)",
                 new SQLTypes[]{SQLTypes.STRING, SQLTypes.STRING});
-
-        // Create new monthly transaction
-        sqlHelper.createQuery("accountHasBalance", "SELECT has_balance(?, ?) AS answer",
-                new SQLTypes[]{SQLTypes.STRING, SQLTypes.DOUBLE}, Respons.class);
 
         // Delete account
         sqlHelper.createQuery("deleteAccount", "DELETE FROM `accounts` WHERE number = ?",
@@ -76,6 +74,14 @@ public final class ApplicationQueryInitializer {
         // Edit account
         sqlHelper.createQuery("editAccount", "UPDATE `accounts` SET `name` = ?, `type` = ? WHERE `number` = ?",
                 new SQLTypes[]{SQLTypes.STRING, SQLTypes.STRING, SQLTypes.STRING});
+
+        // Pay with card
+        sqlHelper.createQuery("payWithCard", "SELECT card_pay(?, ?, ?)",
+                new SQLTypes[]{SQLTypes.STRING, SQLTypes.DOUBLE, SQLTypes.STRING}, Respons.class);
+
+        // Pay salary
+        sqlHelper.createQuery("paySalary", "SELECT pay_salary(?, ?, ?, '0000-00-00') AS answer",
+                new SQLTypes[]{SQLTypes.STRING, SQLTypes.STRING, SQLTypes.DOUBLE}, Respons.class);
 
 
     }

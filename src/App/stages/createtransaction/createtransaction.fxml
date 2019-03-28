@@ -24,28 +24,31 @@
             <Font name="Agency FB" size="48.0" />
          </font>
       </Label>
-      <ComboBox fx:id="fromAccountCombo" layoutX="36.0" layoutY="194.0" prefHeight="26.0" prefWidth="305.0" />
-      <Label layoutX="342.0" layoutY="130.0" text="Ny transaktion">
+      <Label fx:id="labelHeader" alignment="CENTER" contentDisplay="CENTER" layoutX="100.0" layoutY="128.0" prefWidth="600.0" text="Ny transaktion" textAlignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
       <Label layoutX="36.0" layoutY="176.0" text="Från konto" />
-      <Label layoutX="458.0" layoutY="176.0" text="Till konto" />
-      <Label layoutX="458.0" layoutY="254.0" text="Till externt konto" />
-      <TextField fx:id="externalAccount" layoutX="457.0" layoutY="272.0" prefHeight="26.0" prefWidth="306.0" />
+      <Label fx:id="toAccountLabel" layoutX="458.0" layoutY="176.0" text="Till konto" />
+      <Label fx:id="toExternalAccountLabel" layoutX="458.0" layoutY="246.0" text="Till externt konto" />
+      <Label layoutX="35.0" layoutY="246.0" text="Meddelande till dig" />
+      <Label fx:id="dateLabel" layoutX="36.0" layoutY="385.0" text="Transaktionsdatum (lämna tomt för omedelbar transaktion)" />
+      <Label fx:id="errorLabelAccount" layoutX="457.0" layoutY="291.0" text="felaktigt" textFill="RED" />
+      <Label fx:id="errorLabelDate" layoutX="35.0" layoutY="429.0" text="date" textFill="RED" />
+      <Label fx:id="amountLabel" layoutX="459.0" layoutY="315.0" text="Belopp" />
+      <Label fx:id="errorLabelAmount" layoutX="459.0" layoutY="359.0" text="hej" textFill="RED" />
+      <Label fx:id="messageDepositLabel" layoutX="35.0" layoutY="312.0" text="Meddelande till mottagare" />
+      <ComboBox fx:id="fromAccountCombo" layoutX="36.0" layoutY="194.0" prefHeight="26.0" prefWidth="305.0" />
       <ComboBox fx:id="toAccountCombo" layoutX="458.0" layoutY="194.0" prefHeight="26.0" prefWidth="305.0" />
-      <Button fx:id="abortTransaction" layoutX="290.0" layoutY="526.0" mnemonicParsing="false" text="Avbryt" />
-      <Button fx:id="createTransaction" layoutX="392.0" layoutY="526.0" mnemonicParsing="false" text="Genomför transaktion" />
-      <TextField fx:id="transactionMessage" layoutX="38.0" layoutY="272.0" prefHeight="26.0" prefWidth="306.0" />
-      <Label layoutX="38.0" layoutY="254.0" text="Meddelande" />
-      <TextField fx:id="transactionDate" layoutX="38.0" layoutY="348.0" prefHeight="26.0" prefWidth="306.0" />
-      <Label layoutX="38.0" layoutY="330.0" text="Transaktionsdatum (lämna tomt för omedelbar transaktion)" />
-      <CheckBox fx:id="transactionRepeat" layoutX="311.0" layoutY="400.0" mnemonicParsing="false" text="Repetera transaktionen varje månad" />
-      <Label fx:id="errorLabelAccount" layoutX="458.0" layoutY="298.0" textFill="RED" />
-      <Label fx:id="errorLabelDate" layoutX="38.0" layoutY="374.0" textFill="RED" />
-      <Label layoutX="458.0" layoutY="330.0" text="Belopp" />
-      <TextField fx:id="transactionAmount" layoutX="457.0" layoutY="348.0" prefHeight="26.0" prefWidth="306.0" />
-      <Label fx:id="errorLabelAmount" layoutX="457.0" layoutY="374.0" textFill="RED" />
+      <TextField fx:id="externalAccount" layoutX="457.0" layoutY="264.0" prefHeight="26.0" prefWidth="306.0" />
+      <TextField fx:id="transactionMessageDeposit" layoutX="35.0" layoutY="264.0" prefHeight="26.0" prefWidth="306.0" />
+      <TextField fx:id="transactionMessageWithdrawal" layoutX="35.0" layoutY="331.0" prefHeight="26.0" prefWidth="306.0" />
+      <TextField fx:id="transactionAmount" alignment="CENTER_RIGHT" layoutX="458.0" layoutY="333.0" prefHeight="26.0" prefWidth="306.0" text="0" />
+      <TextField fx:id="transactionDate" layoutX="35.0" layoutY="403.0" prefHeight="26.0" prefWidth="306.0" />
+      <CheckBox fx:id="transactionRepeat" layoutX="460.0" layoutY="404.0" mnemonicParsing="false" text="Repetera transaktionen varje månad" />
+      <Button fx:id="abortTransaction" layoutX="283.0" layoutY="494.0" mnemonicParsing="false" text="Avbryt" />
+      <Button fx:id="createTransaction" layoutX="385.0" layoutY="494.0" mnemonicParsing="false" text="Genomför transaktion" />
+      <Label fx:id="lazyPlaceholder" layoutX="459.0" layoutY="220.0" />
    </children>
 </AnchorPane>

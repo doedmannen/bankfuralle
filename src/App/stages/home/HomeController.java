@@ -6,6 +6,7 @@ import App.models.Account;
 import App.models.Transaction;
 import App.stages.StageHandler;
 import App.stages.confirmation.ConfirmationController;
+import App.stages.createtransaction.CreateTransactionHelper;
 import App.stages.editaccount.EditAccountHelper;
 import App.stages.viewaccount.ViewAccountHelper;
 import javafx.application.Platform;
@@ -74,8 +75,14 @@ public class HomeController {
         setCardMax();
         menuOpenAccount.setOnAction(event -> Platform.runLater(()-> StageHandler.switchSceneTo(this, "createaccount")));
         menuCreateAutogiro.setOnAction(event -> Platform.runLater(()-> StageHandler.switchSceneTo(this, "createautogiro")));
-        menuCreateTransaction.setOnAction(event -> Platform.runLater(()-> StageHandler.switchSceneTo(this, "createtransaction")));
-        menuCreatePayment.setOnAction(event -> Platform.runLater(()-> StageHandler.switchSceneTo(this, "createpayment")));
+        menuCreateTransaction.setOnAction(event -> {
+            CreateTransactionHelper.paymentState = false;
+            Platform.runLater(()-> StageHandler.switchSceneTo(this, "createtransaction"));
+        });
+        menuCreatePayment.setOnAction(event -> {
+            CreateTransactionHelper.paymentState = true;
+            Platform.runLater(()-> StageHandler.switchSceneTo(this, "createtransaction"));
+        });
         menuButtonChangeMaxCharge.setOnAction(event -> updateCardMax());
         menuDeleteAccount.setOnAction(event -> deleteSelectedAccount());
         menuEditAccount.setOnAction(event -> editSelectedAccount());
