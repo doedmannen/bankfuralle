@@ -4,8 +4,14 @@ School assignment
 This project is a simple banking application in Java using JavaFX. The application is connected to a SQL-database. There is no backend in
 the middle of things to handle stuff properly.
 
+### Accounts for testing:
+Login user 1: 0101012020 pw: test
+
+Login user 2: 0202020101 pw: test
+
+
 ### Finished userstories
-I think that I have accomplished to do all the userstories that was asked of me. There all in there. See notes below for some important implementations.
+I think that I have accomplished all the userstories for the assignment. There all in there. See notes below for some implementations.
 
 ### Notes
 * Three users are hardcoded into the projects database, one of them is a dummy costumer that holds all accounts that leads nowhere
