@@ -16,13 +16,6 @@ public class Customer {
     @DBCol("SSN")
     private String ssn;
 
-    @DBCol("max_withdraw")
-    private double maxWithdraw;
-
-
-    public double getMaxWithdraw() {
-        return maxWithdraw;
-    }
 
     public String getSsn() {
         return ssn;
