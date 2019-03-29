@@ -52,7 +52,6 @@ public class LoginController {
         BankMain.customer = LoginHelper.getUserFromDatabase(SSN, password);
         if(BankMain.customer != null){
             BankMain.card = LoginHelper.getUsersCard();
-            System.out.println(BankMain.card.getNumber());
             BankMain.bankTitle = BankMain.bankTitle.concat("Inloggad som: " + BankMain.customer.getName().concat(" - "));
             StageHandler.switchSceneTo(this, "home");
         } else {
