@@ -3,6 +3,7 @@ package App.stages.home;
 import App.BankMain;
 import App.helpers.moneyhelper.MoneyHelper;
 import App.helpers.string.Replacer;
+import App.models.Card;
 import App.models.Customer;
 import App.models.Respons;
 
@@ -28,12 +29,13 @@ public final class HomeHelper {
     static void reloadUserFromDatabase(){
         try{
             BankMain.customer = (Customer) BankMain.sqlHelper.getObjectFromQuery("reloadUser", BankMain.customer.getId());
+            BankMain.card = (Card) BankMain.sqlHelper.getObjectFromQuery("getCard", BankMain.customer.getId());
         }catch (Exception e){}
     }
 
     static void updateMax(String max){
         double maxWithdraw = MoneyHelper.parseAmount(max);
-        BankMain.sqlHelper.runQueryWithData("updateMaxWithdraw", maxWithdraw, BankMain.customer.getId());
+        BankMain.sqlHelper.runQueryWithData("updateMaxWithdraw", maxWithdraw, BankMain.card.getNumber());
         reloadUserFromDatabase();
     }
 

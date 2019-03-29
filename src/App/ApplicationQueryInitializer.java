@@ -19,8 +19,8 @@ public final class ApplicationQueryInitializer {
                 new SQLTypes[]{SQLTypes.LONG}, Customer.class);
 
         // Update costumers max withdraw
-        sqlHelper.createQuery("updateMaxWithdraw","UPDATE cards SET limit = ? WHERE owner_id = ?",
-                new SQLTypes[]{SQLTypes.DOUBLE, SQLTypes.LONG}, Customer.class);
+        sqlHelper.createQuery("updateMaxWithdraw","UPDATE `cards` SET `cards`.`limit` = ? WHERE `cards`.`card_number` = ?",
+                new SQLTypes[]{SQLTypes.DOUBLE, SQLTypes.STRING});
 
         // Get accounts for logged in customer
         sqlHelper.createQuery("allMyAccountsQuery","SELECT * FROM balance_accounts WHERE owner_id = ?",

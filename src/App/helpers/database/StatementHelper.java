@@ -30,6 +30,7 @@ class StatementHelper {
     }
 
     <T> void setSomething(int index, T value) throws Exception{
+        System.out.println(value);
         switch (dataTypes[index]){
             case INT:
                 preparedStatement.setInt((index+1), (Integer) value);

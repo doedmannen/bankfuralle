@@ -89,7 +89,11 @@ public class HomeController {
         menuEditAccount.setOnAction(event -> editSelectedAccount());
         menuViewAccount.setOnAction(event -> viewSelectedAccount());
         fieldMaxCard.textProperty().addListener((observable, oldValue, newValue) -> {
-            ((StringProperty)observable).setValue(Replacer.moneyTrim(newValue));
+            Platform.runLater(()->{
+                ((StringProperty)observable).setValue(Replacer.moneyTrim(newValue));
+                for(int i = 0; i < newValue.length(); ++i)
+                    fieldMaxCard.forward();
+            });
         });
         simulationBuyFood.setOnAction(event -> {
             HomeSimulator.runCardSimulation(559.95, "ICA Maxi");
@@ -111,12 +115,13 @@ public class HomeController {
 
     private void updateCardMax(){
         HomeHelper.updateMax(fieldMaxCard.getText());
+        HomeHelper.reloadUserFromDatabase();
         ConfirmationController.setMessage("Ditt maxbelopp för kortköp är nu ändrat");
         Platform.runLater(()-> StageHandler.switchSceneTo(this, "confirmation"));
     }
 
     private void setCardMax(){
-        fieldMaxCard.setText(Replacer.moneyTrim(""+BankMain.card.getLimit()));
+        fieldMaxCard.setText(Replacer.moneyTrim(""+BankMain.card.getLimit()+"0"));
     }
 
     private void editSelectedAccount(){

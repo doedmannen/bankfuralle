@@ -64,6 +64,7 @@ public class SQLHelper {
             queryMaster.runQuery(queryKey);
             isSuccessful = true;
         }
+        System.out.println(isSuccessful);
         return isSuccessful;
     }
     public void runQueryWithoutData(String queryKey){
