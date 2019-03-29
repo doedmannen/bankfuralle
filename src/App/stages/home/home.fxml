@@ -43,15 +43,15 @@
       <Button fx:id="menuOpenAccount" layoutX="19.0" layoutY="142.0" minWidth="-Infinity" mnemonicParsing="false" prefWidth="170.0" text="Öppna nytt konto" />
       <Button fx:id="menuDeleteAccount" layoutX="506.0" layoutY="274.0" mnemonicParsing="false" text="Ta bort valt konto" />
       <Button fx:id="menuViewAccount" layoutX="236.0" layoutY="274.0" mnemonicParsing="false" text="Visa transaktioner för valt konto" />
-      <Button fx:id="simulationBuyHorse" layoutX="19.0" layoutY="410.0" minWidth="-Infinity" mnemonicParsing="false" prefWidth="170.0" text="Köp travhäst med kort" />
+      <Button fx:id="simulationBuyHorse" layoutX="19.0" layoutY="410.0" minWidth="-Infinity" mnemonicParsing="false" prefWidth="170.0" text="Köp TV" />
       <Button fx:id="simulationPayday" layoutX="19.0" layoutY="471.0" minWidth="-Infinity" mnemonicParsing="false" prefWidth="170.0" text="Det är den 25e idag" />
       <Label layoutX="52.0" layoutY="388.0" text="Simuleringar" textFill="WHITE">
          <font>
             <Font name="Arial Black" size="14.0" />
          </font>
       </Label>
-      <Button fx:id="simulationBuyFood" layoutX="19.0" layoutY="440.0" minWidth="-Infinity" mnemonicParsing="false" prefWidth="170.0" text="Köp lunch för 2 med kort" />
-      <Button fx:id="simulationAutogiro" layoutX="19.0" layoutY="503.0" minWidth="-Infinity" mnemonicParsing="false" prefWidth="170.0" text="Dra 299kr på mina autogiro" />
+      <Button fx:id="simulationBuyFood" layoutX="19.0" layoutY="440.0" minWidth="-Infinity" mnemonicParsing="false" prefWidth="170.0" text="Köp mat på ica" />
+      <Button fx:id="simulationAutogiro" layoutX="19.0" layoutY="503.0" minWidth="-Infinity" mnemonicParsing="false" prefWidth="170.0" text="Dra 299kr på autogiro" />
       <Label fx:id="errorLabelDelete" layoutX="507.0" layoutY="300.0" text="" textFill="RED" />
    </children>
 </AnchorPane>

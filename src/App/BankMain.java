@@ -1,6 +1,7 @@
 package App;
 
 import App.helpers.database.SQLHelper;
+import App.models.Card;
 import App.models.Customer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,7 @@ public class BankMain extends Application {
     public static Stage stage;
     public static SQLHelper sqlHelper;
     public static Customer customer;
+    public static Card card;
     public static String bankTitle;
 
     @Override

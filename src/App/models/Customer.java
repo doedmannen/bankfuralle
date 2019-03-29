@@ -24,6 +24,10 @@ public class Customer {
         return maxWithdraw;
     }
 
+    public String getSsn() {
+        return ssn;
+    }
+
     public String getName(){
         return firstname.concat(" " + lastname);
     }
@@ -32,8 +36,4 @@ public class Customer {
         return id;
     }
 
-    @Override
-    public String toString() {
-        return "IAMA user with id " + id + " and name " + firstname.concat(" " + lastname);
-    }
 }

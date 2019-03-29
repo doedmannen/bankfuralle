@@ -2,10 +2,7 @@ package App;
 
 import App.helpers.database.SQLHelper;
 import App.helpers.database.enums.SQLTypes;
-import App.models.Account;
-import App.models.Customer;
-import App.models.Respons;
-import App.models.Transaction;
+import App.models.*;
 
 import java.lang.annotation.Repeatable;
 
@@ -22,7 +19,7 @@ public final class ApplicationQueryInitializer {
                 new SQLTypes[]{SQLTypes.LONG}, Customer.class);
 
         // Update costumers max withdraw
-        sqlHelper.createQuery("updateMaxWithdraw","UPDATE costumers SET max_withdraw = ? WHERE id = ?",
+        sqlHelper.createQuery("updateMaxWithdraw","UPDATE cards SET limit = ? WHERE owner_id = ?",
                 new SQLTypes[]{SQLTypes.DOUBLE, SQLTypes.LONG}, Customer.class);
 
         // Get accounts for logged in customer
@@ -67,6 +64,9 @@ public final class ApplicationQueryInitializer {
         sqlHelper.createQuery("createAutogiro", "CALL create_autogiro(?, ?)",
                 new SQLTypes[]{SQLTypes.STRING, SQLTypes.STRING});
 
+        // Create new monthly transaction
+        sqlHelper.createQuery("chargeAutogiro", "CALL autogiro_payments()");
+
         // Delete account
         sqlHelper.createQuery("deleteAccount", "DELETE FROM `accounts` WHERE number = ?",
                 new SQLTypes[]{SQLTypes.STRING});
@@ -75,14 +75,17 @@ public final class ApplicationQueryInitializer {
         sqlHelper.createQuery("editAccount", "UPDATE `accounts` SET `name` = ?, `type` = ? WHERE `number` = ?",
                 new SQLTypes[]{SQLTypes.STRING, SQLTypes.STRING, SQLTypes.STRING});
 
+        // Get card for user
+        sqlHelper.createQuery("getCard", "SELECT * from cards where owner_id = ? LIMIT 1",
+                new SQLTypes[]{SQLTypes.LONG}, Card.class);
+
         // Pay with card
-        sqlHelper.createQuery("payWithCard", "SELECT card_pay(?, ?, ?)",
+        sqlHelper.createQuery("payWithCard", "SELECT card_pay(?, ?, ?) AS answer",
                 new SQLTypes[]{SQLTypes.STRING, SQLTypes.DOUBLE, SQLTypes.STRING}, Respons.class);
 
         // Pay salary
         sqlHelper.createQuery("paySalary", "SELECT pay_salary(?, ?, ?, '0000-00-00') AS answer",
                 new SQLTypes[]{SQLTypes.STRING, SQLTypes.STRING, SQLTypes.DOUBLE}, Respons.class);
-
 
     }
 }

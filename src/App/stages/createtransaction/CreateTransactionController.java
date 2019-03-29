@@ -94,14 +94,18 @@ public class CreateTransactionController {
 
         BankMain.stage.setTitle(BankMain.bankTitle + (CreateTransactionHelper.paymentState ? "Ny betalning" : "Ny transaktion"));
         setAllAccounts();
+        externalAccount.setDisable(true);
         if(allAcounts.size() < 1){
             Platform.runLater(()-> StageHandler.switchSceneTo(this, "home"));
         } else {
             setAccountCombos();
             transactionDate.setText(LocalDate.now().format(DateTimeFormatter.BASIC_ISO_DATE));
-
+            toAccountCombo.getSelectionModel().selectedItemProperty().addListener((observable)->{
+                checkExternal();
+            });
             externalAccount.textProperty().addListener((observable, oldValue, newValue) ->
-                    ((StringProperty) observable).setValue(Replacer.numberTrimmer(newValue, 14)));
+                    ((StringProperty) observable).setValue(Replacer.numberTrimmer(newValue,
+                            (CreateTransactionHelper.paymentState ? 8:14))));
             transactionDate.textProperty().addListener((observable, oldValue, newValue) ->
                     ((StringProperty) observable).setValue(Replacer.numberTrimmer(newValue, 8)));
             transactionMessageDeposit.textProperty().addListener((observable, oldValue, newValue) ->
@@ -124,6 +128,12 @@ public class CreateTransactionController {
         if(CreateTransactionHelper.paymentState == true){
             setSceneToPayments();
         }
+    }
+
+    private void checkExternal(){
+        Platform.runLater(()->{
+            externalAccount.setDisable(!toAccountCombo.getValue().equals("Överföring till externt konto (fylls i manuellt nedan)"));
+        });
     }
 
     private void goHome(){
@@ -211,7 +221,6 @@ public class CreateTransactionController {
     }
 
     private void setSceneToPayments(){
-
         labelHeader.setText("Ny betalning");
         toAccountCombo.setValue("Överföring till externt konto (fylls i manuellt nedan)");
         toAccountCombo.setVisible(false);
@@ -237,5 +246,6 @@ public class CreateTransactionController {
         errorLabelAmount.setLayoutX(errorLabelAccount.getLayoutX());
         errorLabelAccount.setLayoutX(lazyPlaceholder.getLayoutX());
         errorLabelAccount.setLayoutY(lazyPlaceholder.getLayoutY());
+        externalAccount.setDisable(false);
     }
 }

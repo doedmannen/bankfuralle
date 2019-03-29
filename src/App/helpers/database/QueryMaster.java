@@ -15,7 +15,6 @@ class QueryMaster {
     }
 
     boolean addQuery(String key, String query, SQLTypes[] dataTypes, Class<?> someClass){
-        //todo this has no way to confirm anything. Needs to have possible failure.
         boolean confirmation = false;
         try {
             preparedStatements.put(key, new StatementHelper(query, connector, dataTypes, someClass));

@@ -1,6 +1,7 @@
 package App.stages.home;
 
 import App.BankMain;
+import App.helpers.moneyhelper.MoneyHelper;
 import App.helpers.string.Replacer;
 import App.models.Customer;
 import App.models.Respons;
@@ -31,7 +32,7 @@ public final class HomeHelper {
     }
 
     static void updateMax(String max){
-        double maxWithdraw = Double.parseDouble(max);
+        double maxWithdraw = MoneyHelper.parseAmount(max);
         BankMain.sqlHelper.runQueryWithData("updateMaxWithdraw", maxWithdraw, BankMain.customer.getId());
         reloadUserFromDatabase();
     }

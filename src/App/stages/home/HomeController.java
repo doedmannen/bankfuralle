@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.util.List;
 
@@ -88,7 +89,23 @@ public class HomeController {
         menuEditAccount.setOnAction(event -> editSelectedAccount());
         menuViewAccount.setOnAction(event -> viewSelectedAccount());
         fieldMaxCard.textProperty().addListener((observable, oldValue, newValue) -> {
-            ((StringProperty)observable).setValue(Replacer.numberTrimmer(newValue, 8));
+            ((StringProperty)observable).setValue(Replacer.moneyTrim(newValue));
+        });
+        simulationBuyFood.setOnAction(event -> {
+            HomeSimulator.runCardSimulation(559.95, "ICA Maxi");
+            Platform.runLater(()-> StageHandler.switchSceneTo(this, "confirmation"));
+        });
+        simulationBuyHorse.setOnAction(event ->{
+            HomeSimulator.runCardSimulation(12000, "Elgiganten");
+            Platform.runLater(()-> StageHandler.switchSceneTo(this, "confirmation"));
+        });
+        simulationPayday.setOnAction(event -> {
+            HomeSimulator.runPaydaySimulation(25000);
+            Platform.runLater(()-> StageHandler.switchSceneTo(this, "confirmation"));
+        });
+        simulationAutogiro.setOnAction(event -> {
+            HomeSimulator.runAutogiroSimulation();
+            Platform.runLater(()-> StageHandler.switchSceneTo(this, "confirmation"));
         });
     }
 
@@ -99,7 +116,7 @@ public class HomeController {
     }
 
     private void setCardMax(){
-        fieldMaxCard.setText(String.format("%8.0f",BankMain.customer.getMaxWithdraw()).trim());
+        fieldMaxCard.setText(Replacer.moneyTrim(""+BankMain.card.getLimit()));
     }
 
     private void editSelectedAccount(){

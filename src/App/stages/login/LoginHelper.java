@@ -1,6 +1,7 @@
 package App.stages.login;
 
 import App.BankMain;
+import App.models.Card;
 import App.models.Customer;
 import App.stages.StageHandler;
 
@@ -16,6 +17,10 @@ public final class LoginHelper {
             customer = (Customer) BankMain.sqlHelper.getObjectFromQuery("loginQuery", SSN, password);
         }catch (Exception e){}
         return customer;
+    }
+
+    static Card getUsersCard(){
+        return (Card) BankMain.sqlHelper.getObjectFromQuery("getCard", BankMain.customer.getId());
     }
 
 

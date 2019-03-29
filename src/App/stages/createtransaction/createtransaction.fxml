@@ -34,17 +34,17 @@
       <Label fx:id="toExternalAccountLabel" layoutX="458.0" layoutY="246.0" text="Till externt konto" />
       <Label layoutX="35.0" layoutY="246.0" text="Meddelande till dig" />
       <Label fx:id="dateLabel" layoutX="36.0" layoutY="385.0" text="Transaktionsdatum (lämna tomt för omedelbar transaktion)" />
-      <Label fx:id="errorLabelAccount" layoutX="457.0" layoutY="291.0" text="felaktigt" textFill="RED" />
-      <Label fx:id="errorLabelDate" layoutX="35.0" layoutY="429.0" text="date" textFill="RED" />
+      <Label fx:id="errorLabelAccount" layoutX="457.0" layoutY="291.0" textFill="RED" />
+      <Label fx:id="errorLabelDate" layoutX="35.0" layoutY="429.0" textFill="RED" />
       <Label fx:id="amountLabel" layoutX="459.0" layoutY="315.0" text="Belopp" />
-      <Label fx:id="errorLabelAmount" layoutX="459.0" layoutY="359.0" text="hej" textFill="RED" />
+      <Label fx:id="errorLabelAmount" layoutX="459.0" layoutY="359.0" textFill="RED" />
       <Label fx:id="messageDepositLabel" layoutX="35.0" layoutY="312.0" text="Meddelande till mottagare" />
       <ComboBox fx:id="fromAccountCombo" layoutX="36.0" layoutY="194.0" prefHeight="26.0" prefWidth="305.0" />
       <ComboBox fx:id="toAccountCombo" layoutX="458.0" layoutY="194.0" prefHeight="26.0" prefWidth="305.0" />
       <TextField fx:id="externalAccount" layoutX="457.0" layoutY="264.0" prefHeight="26.0" prefWidth="306.0" />
       <TextField fx:id="transactionMessageDeposit" layoutX="35.0" layoutY="264.0" prefHeight="26.0" prefWidth="306.0" />
       <TextField fx:id="transactionMessageWithdrawal" layoutX="35.0" layoutY="331.0" prefHeight="26.0" prefWidth="306.0" />
-      <TextField fx:id="transactionAmount" alignment="CENTER_RIGHT" layoutX="458.0" layoutY="333.0" prefHeight="26.0" prefWidth="306.0" text="0" />
+      <TextField fx:id="transactionAmount" alignment="CENTER_RIGHT" layoutX="458.0" layoutY="333.0" prefHeight="26.0" prefWidth="306.0" />
       <TextField fx:id="transactionDate" layoutX="35.0" layoutY="403.0" prefHeight="26.0" prefWidth="306.0" />
       <CheckBox fx:id="transactionRepeat" layoutX="460.0" layoutY="404.0" mnemonicParsing="false" text="Repetera transaktionen varje månad" />
       <Button fx:id="abortTransaction" layoutX="283.0" layoutY="494.0" mnemonicParsing="false" text="Avbryt" />
