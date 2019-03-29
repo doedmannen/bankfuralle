@@ -8,6 +8,7 @@ import App.stages.confirmation.ConfirmationController;
 import App.stages.createtransaction.CreateTransactionHelper;
 import App.stages.home.HomeHelper;
 import javafx.application.Platform;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -43,7 +44,7 @@ public class CreateAutogiroController {
         cancelButton.setOnAction(e-> Platform.runLater(()-> StageHandler.switchSceneTo(this, "home")));
         setAccountList();
         toAccount.textProperty().addListener(((observable, oldValue, newValue) -> {
-            Replacer.numberTrimmer(newValue, 8);
+            ((StringProperty)observable).setValue(Replacer.numberTrimmer(newValue, 8));
         }));
     }
 
