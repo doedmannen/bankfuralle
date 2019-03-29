@@ -16,6 +16,8 @@ public final class MoneyHelper {
 
     public static double parseAmount(String amount){
         amount = amount.replaceAll(" ", "").replaceAll(",", ".");
+        if(amount.length() == 0 || amount.equals("."))
+            return 0;
         return Double.parseDouble(amount);
     }
 }
